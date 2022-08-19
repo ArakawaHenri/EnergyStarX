@@ -7,9 +7,36 @@
     mc:Ignorable="d">
 
     <Grid x:Name="ContentArea">
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="StartService" Click="StartService_Click">Start EnergyStar</Button>
-            <Button x:Name="StopService" Click="StopService_Click">Stop EnergyStar</Button>
-        </StackPanel>
+        <InfoBar
+            x:Uid="Platform_Note"
+            IsOpen="True"
+            IsIconVisible="True"
+            Severity="Warning"
+            IsClosable="False"/>
+
+        <Grid Margin="0,80,0,0">
+            <TextBlock>
+			<Run x:Uid="EnergyStarStatusTitle" FontWeight="Bold" FontSize="20"/>
+            </TextBlock>
+            <TextBlock 
+			    Margin="0,30,0,0"
+			    x:Name="EnergyStarStatusText"
+                FontSize="18"/>
+        </Grid>
+
+        <Grid
+		   VerticalAlignment="Bottom"
+		   HorizontalAlignment="Right"
+		   Margin="0,0,0,35">
+            <ToggleButton 
+				x:Name="EnergyStarToggle"
+				Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
+                <StackPanel>
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE868;"/>
+                    <TextBlock Text="Start"/>
+                </StackPanel>
+            </ToggleButton>
+
+        </Grid>
     </Grid>
 </Page>

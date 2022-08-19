@@ -1,7 +1,7 @@
 ﻿using EnergyStar.ViewModels;
 
 using Microsoft.UI.Xaml.Controls;
-using Windows.Services.Maps;
+using Microsoft.UI.Xaml;
 
 namespace EnergyStar.Views;
 
@@ -16,6 +16,15 @@ public sealed partial class MainPage : Page
     {
         ViewModel = App.GetService<MainViewModel>();
         InitializeComponent();
+        if (ESService != null && ESService.IsAlive)
+        {
+            EnergyStarToggle.IsChecked = true;
+            EnergyStarStatusText.Text = "EnergyStar: On";
+        }
+        else
+        {
+            EnergyStarStatusText.Text = "EnergyStar: Off";
+        }
     }
 
     private static Thread? ESService;
@@ -32,39 +41,79 @@ public sealed partial class MainPage : Page
         await cd.ShowAsync();
     }
 
-    private void StartService_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    //private void StartService_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    //{
+    //    if (ESService != null && ESService.IsAlive)
+    //    {
+    //        ShowMessageBox("Thread is already running", "EnergyStar is already running.");
+    //    }
+    //    else
+    //    {
+    //        // Well, this program only works for Windows Version starting with Cobalt...
+    //        // Nickel or higher will be better, but at least it works in Cobalt
+    //        //
+    //        // In .NET 5.0 and later, System.Environment.OSVersion always returns the actual OS version.
+    //        if (Environment.OSVersion.Version.Build < 22000)
+    //        {
+    //            ShowMessageBox("Unsupported platform", "Windows 11 22H2 (or above) and modern chips are required.");
+    //            // ERROR_CALL_NOT_IMPLEMENTED
+    //            return;
+    //        }
+    //        ESService = new(new ThreadStart(EnergyManager.MainService));
+    //        ESService.Start();
+    //    }
+    //}
+
+    //private void StopService_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    //{
+    //    if (ESService == null || !ESService.IsAlive)
+    //    {
+    //        ShowMessageBox("Thread not running", "EnergyStar is not running.");
+    //        EnergyManager.BoostAllInfluencedProcesses();
+    //    }
+    //    else
+    //    {
+    //        EnergyManager.StopService();
+    //    }
+    //}
+    private void ToggleButton_Checked(object sender, RoutedEventArgs e)
     {
-        if (ESService != null && ESService.IsAlive)
+        if (Environment.OSVersion.Version.Build < 22000)
         {
-            ShowMessageBox("Thread is already running", "EnergyStar is already running.");
+            ShowMessageBox("Error", "You are running on an unsupported platform.");
+            return;
         }
-        else
+
+        try
         {
-            // Well, this program only works for Windows Version starting with Cobalt...
-            // Nickel or higher will be better, but at least it works in Cobalt
-            //
-            // In .NET 5.0 and later, System.Environment.OSVersion always returns the actual OS version.
-            if (Environment.OSVersion.Version.Build < 22000)
-            {
-                ShowMessageBox("Unsupported platform", "Windows 11 22H2 (or above) and modern chips are required.");
-                // ERROR_CALL_NOT_IMPLEMENTED
-                return;
-            }
             ESService = new(new ThreadStart(EnergyManager.MainService));
             ESService.Start();
+            EnergyStarStatusText.Text = "EnergyStar: On";
+        }
+        catch (Exception ex)
+        {
+            ShowMessageBox("Error", ex.Message);
         }
     }
 
-    private void StopService_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
     {
-        if (ESService == null || !ESService.IsAlive)
+        try
         {
-            ShowMessageBox("Thread not running", "EnergyStar is not running.");
-            EnergyManager.BoostAllInfluencedProcesses();
+            if (ESService == null || !ESService.IsAlive)
+            {
+                ShowMessageBox("Error", "EnergyStar is not running.");
+                EnergyManager.BoostAllInfluencedProcesses();
+            }
+            else
+            {
+                EnergyManager.StopService();
+            }
+            EnergyStarStatusText.Text = "EnergyStar: Off";
         }
-        else
+        catch (Exception ex)
         {
-            EnergyManager.StopService();
+            ShowMessageBox("Error", ex.Message);
         }
     }
 }

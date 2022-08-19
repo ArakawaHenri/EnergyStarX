@@ -170,4 +170,10 @@
   &lt;/actions&gt;
 &lt;/toast&gt;</value>
   </data>
+  <data name="EnergyStarStatusTitle.Text" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Platform_Note.Message" xml:space="preserve">
+    <value>The EcoQoS API necessary for EnergyStar requires Windows 11 21H2 (or above) and a modern Intel/AMD chip to work.</value>
+  </data>
 </root>

@@ -7,6 +7,11 @@
     mc:Ignorable="d">
 
     <Grid x:Name="ContentArea">
-        
+        <InfoBar
+            IsOpen="True"
+            Severity="Error"
+            IsClosable="False"
+            Title="NOT IMPLEMENTED &lt;del>LazyHenriException&lt;/del>"
+            Message="" />
     </Grid>
 </Page>
