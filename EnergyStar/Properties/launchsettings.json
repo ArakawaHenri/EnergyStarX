@@ -1,0 +1,10 @@
+﻿{
+    "profiles": {
+      "EnergyStar (Package)": {
+        "commandName": "MsixPackage"
+      },
+      "EnergyStar (Unpackaged)": {
+        "commandName": "Project"
+      }
+    }
+}
