@@ -71,6 +71,27 @@ internal class TitleBarHelper
                     _ => new SolidColorBrush(Colors.Transparent)
                 };
             }
+            else
+            {
+                if (Application.Current.RequestedTheme == ApplicationTheme.Dark)
+                {
+                    Application.Current.Resources["WindowCaptionForeground"] = new SolidColorBrush(Colors.White);
+                    Application.Current.Resources["WindowCaptionForegroundDisabled"] = new SolidColorBrush(Color.FromArgb(0x66, 0xFF, 0xFF, 0xFF));
+                    Application.Current.Resources["WindowCaptionButtonBackgroundPointerOver"] = new SolidColorBrush(Color.FromArgb(0x33, 0xFF, 0xFF, 0xFF));
+                    Application.Current.Resources["WindowCaptionButtonBackgroundPressed"] = new SolidColorBrush(Color.FromArgb(0x66, 0xFF, 0xFF, 0xFF));
+                    Application.Current.Resources["WindowCaptionButtonStrokePointerOver"] = new SolidColorBrush(Colors.White);
+                    Application.Current.Resources["WindowCaptionButtonStrokePressed"] = new SolidColorBrush(Colors.White);
+                }
+                else
+                {
+                    Application.Current.Resources["WindowCaptionForeground"] = new SolidColorBrush(Colors.Black);
+                    Application.Current.Resources["WindowCaptionForegroundDisabled"] = new SolidColorBrush(Color.FromArgb(0x66, 0x00, 0x00, 0x00));
+                    Application.Current.Resources["WindowCaptionButtonBackgroundPointerOver"] = new SolidColorBrush(Color.FromArgb(0x33, 0x00, 0x00, 0x00));
+                    Application.Current.Resources["WindowCaptionButtonBackgroundPressed"] = new SolidColorBrush(Color.FromArgb(0x66, 0x00, 0x00, 0x00));
+                    Application.Current.Resources["WindowCaptionButtonStrokePointerOver"] = new SolidColorBrush(Colors.Black);
+                    Application.Current.Resources["WindowCaptionButtonStrokePressed"] = new SolidColorBrush(Colors.Black);
+                }
+            }
 
             Application.Current.Resources["WindowCaptionBackground"] = new SolidColorBrush(Colors.Transparent);
             Application.Current.Resources["WindowCaptionBackgroundDisabled"] = new SolidColorBrush(Colors.Transparent);
