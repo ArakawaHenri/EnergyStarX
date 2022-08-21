@@ -12,7 +12,7 @@
   <Identity
     Name="13522902-BCF4-4AF2-B27F-EAC52F57E66B"
     Publisher="CN=me"
-    Version="0.1.0.0" />
+    Version="0.2.0.0" />
 
   <Properties>
     <DisplayName>EnergyStar</DisplayName>
