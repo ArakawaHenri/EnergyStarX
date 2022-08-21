@@ -1,14 +1,14 @@
-﻿using EnergyStar.Helpers;
-using Microsoft.UI.Xaml;
-using WinRT.Interop;
+﻿using System.Runtime.InteropServices;
+using EnergyStar.Helpers;
+using H.NotifyIcon.Core;
+using Microsoft.UI.Windowing;
 using WinRT;
-using System;
-using System.Runtime.InteropServices;
 
 namespace EnergyStar;
 
 public sealed partial class MainWindow : WindowEx
 {
+    private readonly IntPtr hWnd;
     public MainWindow()
     {
         InitializeComponent();
@@ -17,11 +17,12 @@ public sealed partial class MainWindow : WindowEx
         Content = null;
         Title = "AppDisplayName".GetLocalized();
 
-        IntPtr hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+        hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
         var windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
         var appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(windowId);
 
-        appWindow.Resize(new Windows.Graphics.SizeInt32 { Width = (int)(1150.0 * GetDpiScalingFactor()), Height = (int)(600.0 * GetDpiScalingFactor()) });
+        appWindow.Resize(new Windows.Graphics.SizeInt32 { Width = (int)(1070.0 * GetDpiScalingFactor()), Height = (int)(560.0 * GetDpiScalingFactor()) });
+        appWindow.Closing += AppWindow_Closing;
     }
 
     private double GetDpiScalingFactor()
@@ -35,6 +36,47 @@ public sealed partial class MainWindow : WindowEx
 
     [DllImport("user32.dll")]
     private static extern uint GetDpiForWindow(IntPtr hwnd);
+
+    private void AppWindow_Closing(AppWindow sender, AppWindowClosingEventArgs args)
+    {
+        args.Cancel = true;
+        var window = App.MainWindow;
+        if (window.Visible)
+        {
+            window.Hide();
+        }
+        Thread createIconThread = new(new ThreadStart(CreateIcon));
+        createIconThread.Start();
+    }
+
+    public void CreateIcon()
+    {
+        using var icon = new System.Drawing.Icon(Path.Combine(AppContext.BaseDirectory, "Assets/WindowIcon.ico"));
+        using var trayIcon = new TrayIconWithContextMenu
+        {
+            Icon = icon.Handle,
+            ToolTip = "EnergyStar",
+        };
+        trayIcon.ContextMenu = new PopupMenu
+        {
+            Items =
+            {
+                new PopupMenuItem("Exit", (sender, args) =>
+                {
+                    trayIcon.Dispose();
+                    Environment.Exit(0);
+                }),
+            },
+        };
+        trayIcon.Create();
+        trayIcon.MainWindowHandle = hWnd;
+        trayIcon.MainWindowLocker = new();
+        lock (trayIcon.MainWindowLocker)
+        {
+            Monitor.Wait(trayIcon.MainWindowLocker);
+        }
+        trayIcon.Dispose();
+    }
 }
 
 [ComImport]

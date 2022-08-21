@@ -39,6 +39,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EnergyStar.Core\EnergyStar.Core.csproj" />
+    <ProjectReference Include="..\H.NotifyIcon\H.NotifyIcon\H.NotifyIcon.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="appsettings.json">
