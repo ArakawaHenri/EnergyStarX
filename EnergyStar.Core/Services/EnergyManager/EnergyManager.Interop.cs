@@ -4,7 +4,7 @@ using System.Security;
 using System.Text;
 namespace EnergyStar.Interop;
 
-internal class Win32Interop
+internal class Win32API
 {
     //private const int WINEVENT_INCONTEXT = 4;
     private const int WINEVENT_OUTOFCONTEXT = 0;
@@ -59,6 +59,24 @@ internal class Win32Interop
         EnergyManager.HandleForegroundEvent(hwnd);
     }
 
+    public static Win32API.SYSTEM_POWER_STATUS GetSystemPowerStatus()
+    {
+        IntPtr powerStatusPtr = Marshal.AllocHGlobal(Marshal.SizeOf<Win32API.SYSTEM_POWER_STATUS>());
+
+        try
+        {
+            if (Win32API.GetSystemPowerStatus(powerStatusPtr))
+            {
+                return Marshal.PtrToStructure<Win32API.SYSTEM_POWER_STATUS>(powerStatusPtr);
+            }
+
+            return new Win32API.SYSTEM_POWER_STATUS();
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(powerStatusPtr);
+        }
+    }
 
     [Flags]
     public enum ProcessAccessFlags : uint
@@ -131,6 +149,43 @@ internal class Win32Interop
         public System.Drawing.Point Point;
     }
 
+    [StructLayout(LayoutKind.Sequential)]
+    public struct SYSTEM_POWER_STATUS
+    {
+        public const Byte AC_LINE_STATUS_OFFLINE = 0;           // AC adapter disconnected
+        public const Byte AC_LINE_STATUS_ONLINE = 1;            // AC adapter connected
+        public const Byte AC_LINE_STATUS_UNKNOWN = 255;
+
+        public const Byte BATTERY_FLAG_HIGH = 1;                // the battery capacity is at more than 66 percent
+        public const Byte BATTERY_FLAG_LOW = 2;                 // the battery capacity is at less than 33 percent
+        public const Byte BATTERY_FLAG_CRITICAL = 4;            // the battery capacity is at less than five percent
+        public const Byte BATTERY_FLAG_CHARGING = 8;            // Charging
+        public const Byte BATTERY_FLAG_NO_SYSTEM_BATTERY = 128; // No system battery
+        public const Byte BATTERY_FLAG_UNKNOWN = 255;           // Unable to read the battery flag information
+
+        public const Byte BATTERY_LIFE_PERCENT_UNKNOWN = 255;
+
+        public const Byte SYSTEM_STATUS_FLAG_BATTERY_SAVER_OFF = 0; // Battery saver is off.
+        public const Byte SYSTEM_STATUS_FLAG_BATTERY_SAVER_ON = 1;  // Battery saver on. Save energy where possible.
+
+        public Byte ACLineStatus;           // The AC power status.
+        public Byte BatteryFlag;            // The battery charge status.
+        public Byte BatteryLifePercent;     // The percentage of full battery charge remaining. This member can be a value in the range 0 to 100, or 255 if status is unknown.
+        public Byte SystemStatusFlag;       // The status of battery saver.
+        public UInt32 BatteryLifeTime;      // The number of seconds of battery life remaining, or –1 if remaining seconds are unknown or if the device is connected to AC power.
+        public UInt32 BatteryFullLifeTime;  // The number of seconds of battery life when at full charge, or –1 if full battery lifetime is unknown or if the device is connected to AC power.
+
+        public SYSTEM_POWER_STATUS()
+        {
+            ACLineStatus = AC_LINE_STATUS_UNKNOWN;
+            BatteryFlag = BATTERY_FLAG_UNKNOWN;
+            BatteryLifePercent = BATTERY_LIFE_PERCENT_UNKNOWN;
+            SystemStatusFlag = 0;
+            BatteryLifeTime = 0;
+            BatteryFullLifeTime = 0;
+        }
+    }
+
     [DllImport("user32.dll", SetLastError = true)]
     public static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
 
@@ -153,6 +208,10 @@ internal class Win32Interop
     [SuppressUnmanagedCodeSecurity]
     [return: MarshalAs(UnmanagedType.Bool)]
     public static extern bool CloseHandle(IntPtr hObject);
+
+    [DllImport("kernel32.dll", SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static extern bool GetSystemPowerStatus(IntPtr lpSystemPowerStatus);
 
     [DllImport("user32.dll")]
     [return: MarshalAs(UnmanagedType.Bool)]
