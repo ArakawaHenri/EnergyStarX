@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.InteropServices;
 using H.NotifyIcon.Interop;
 
 namespace H.NotifyIcon.Core;
@@ -35,7 +31,7 @@ public class PopupMenu
             TRACK_POPUP_MENU_FLAGS.TPM_RETURNCMD |
             TRACK_POPUP_MENU_FLAGS.TPM_NONOTIFY |
             TRACK_POPUP_MENU_FLAGS.TPM_BOTTOMALIGN;
-        
+
         BOOL id;
 
         unsafe

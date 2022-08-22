@@ -2,7 +2,6 @@
 using EnergyStar.Contracts.Services;
 using EnergyStar.Core.Contracts.Services;
 using EnergyStar.Core.Services;
-using EnergyStar.Helpers;
 using EnergyStar.Models;
 using EnergyStar.Notifications;
 using EnergyStar.Services;
@@ -60,6 +59,7 @@ public partial class App : Application
             services.AddSingleton<IAppNotificationService, AppNotificationService>();
             services.AddSingleton<ILocalSettingsService, LocalSettingsService>();
             services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
+            services.AddSingleton<ISettingsService, SettingsService>();
             services.AddTransient<INavigationViewService, NavigationViewService>();
 
             services.AddSingleton<IActivationService, ActivationService>();
@@ -102,5 +102,7 @@ public partial class App : Application
         //App.GetService<IAppNotificationService>().Show(string.Format("AppNotificationSamplePayload".GetLocalized(), AppContext.BaseDirectory));
 
         await App.GetService<IActivationService>().ActivateAsync(args);
+
+        MainWindow.SetWindowSize(1070, 575);
     }
 }

@@ -5,8 +5,6 @@ using EnergyStar.Helpers;
 using EnergyStar.Models;
 
 using Microsoft.Extensions.Options;
-
-using Windows.ApplicationModel;
 using Windows.Storage;
 
 namespace EnergyStar.Services;

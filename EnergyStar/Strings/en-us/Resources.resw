@@ -176,4 +176,34 @@
   <data name="Platform_Note.Message" xml:space="preserve">
     <value>The EcoQoS API necessary for EnergyStar requires Windows 11 21H2 (or above) and a modern chip to work.</value>
   </data>
+  <data name="Settings_CreditTo.Text" xml:space="preserve">
+    <value>
+
+
+
+
+
+
+
+
+
+
+
+This project could not have been born without the support of @imbushuo's original project and @Shisheng233.
+
+
+</value>
+  </data>
+  <data name="Settings_General.Text" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Settings_StartUp.Text" xml:space="preserve">
+    <value>StartUp Settings</value>
+  </data>
+  <data name="Settings_Strategy.Text" xml:space="preserve">
+    <value>Working Strategy Settings</value>
+  </data>
+  <data name="Settings_AlwaysThrottle.Content" xml:space="preserve">
+    <value>Throttle background processes even with the power supply connected</value>
+  </data>
 </root>

@@ -1,7 +1,6 @@
 ﻿using EnergyStar.ViewModels;
-
-using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 
 namespace EnergyStar.Views;
 
@@ -86,7 +85,7 @@ public sealed partial class MainPage : Page
 
         try
         {
-            ESService = new(new ThreadStart(EnergyManager.MainService));
+            ESService = new(new ThreadStart(EnergyManager.EnergyManager.MainService));
             ESService.Start();
             EnergyStarStatusText.Text = "EnergyStar: On";
         }
@@ -103,11 +102,11 @@ public sealed partial class MainPage : Page
             if (ESService == null || !ESService.IsAlive)
             {
                 ShowMessageBox("Error", "EnergyStar is not running.");
-                EnergyManager.BoostAllInfluencedProcesses();
+                EnergyManager.EnergyManager.BoostAllInfluencedProcesses();
             }
             else
             {
-                EnergyManager.StopService();
+                EnergyManager.EnergyManager.StopService();
             }
             EnergyStarStatusText.Text = "EnergyStar: Off";
         }

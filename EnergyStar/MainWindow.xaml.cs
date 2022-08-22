@@ -2,7 +2,6 @@
 using EnergyStar.Helpers;
 using H.NotifyIcon.Core;
 using Microsoft.UI.Windowing;
-using WinRT;
 
 namespace EnergyStar;
 
@@ -20,22 +19,20 @@ public sealed partial class MainWindow : WindowEx
         hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
         var windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
         var appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(windowId);
-
-        appWindow.Resize(new Windows.Graphics.SizeInt32 { Width = (int)(1070.0 * GetDpiScalingFactor()), Height = (int)(560.0 * GetDpiScalingFactor()) });
         appWindow.Closing += AppWindow_Closing;
     }
 
-    private double GetDpiScalingFactor()
-    {
-        var windowNative = this.As<IWindowNative>();
-        var hwnd = windowNative.WindowHandle;
+    //private double GetDpiScalingFactor()
+    //{
+    //    var windowNative = this.As<IWindowNative>();
+    //    var hwnd = windowNative.WindowHandle;
 
-        var dpi = GetDpiForWindow(hwnd);
-        return (float)dpi / 96;
-    }
+    //    var dpi = GetDpiForWindow(hwnd);
+    //    return (float)dpi / 96;
+    //}
 
-    [DllImport("user32.dll")]
-    private static extern uint GetDpiForWindow(IntPtr hwnd);
+    //[DllImport("user32.dll")]
+    //private static extern uint GetDpiForWindow(IntPtr hwnd);
 
     private void AppWindow_Closing(AppWindow sender, AppWindowClosingEventArgs args)
     {

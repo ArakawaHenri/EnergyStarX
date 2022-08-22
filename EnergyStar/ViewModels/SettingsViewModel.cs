@@ -16,6 +16,7 @@ namespace EnergyStar.ViewModels;
 public class SettingsViewModel : ObservableRecipient
 {
     private readonly IThemeSelectorService _themeSelectorService;
+    private readonly ISettingsService _settingsService;
     private ElementTheme _elementTheme;
     private string _versionDescription;
 
@@ -36,8 +37,9 @@ public class SettingsViewModel : ObservableRecipient
         get;
     }
 
-    public SettingsViewModel(IThemeSelectorService themeSelectorService)
+    public SettingsViewModel(IThemeSelectorService themeSelectorService, ISettingsService settingsService)
     {
+        _settingsService = settingsService;
         _themeSelectorService = themeSelectorService;
         _elementTheme = _themeSelectorService.Theme;
         _versionDescription = GetVersionDescription();
@@ -51,6 +53,18 @@ public class SettingsViewModel : ObservableRecipient
                     await _themeSelectorService.SetThemeAsync(param);
                 }
             });
+    }
+
+    public async void AlwaysThrottle_Checked(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    {
+        await _settingsService.SaveSettingsAsync("AlwaysThrottle", "true");
+        EnergyManager.EnergyManager.AlwaysThrottle = true;
+    }
+
+    public async void AlwaysThrottle_Unchecked(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    {
+        await _settingsService.SaveSettingsAsync("AlwaysThrottle", "false");
+        EnergyManager.EnergyManager.AlwaysThrottle = false;
     }
 
     private static string GetVersionDescription()

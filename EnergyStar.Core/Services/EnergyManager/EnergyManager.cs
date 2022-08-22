@@ -1,10 +1,10 @@
-﻿using EnergyStar.Interop;
-using Microsoft.Win32;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
+using EnergyManager.Interop;
+using Microsoft.Win32;
 
-namespace EnergyStar;
+namespace EnergyManager;
 
 public class EnergyManager
 {

@@ -2,7 +2,6 @@
 using System.Web;
 
 using EnergyStar.Contracts.Services;
-using EnergyStar.ViewModels;
 
 using Microsoft.Windows.AppNotifications;
 

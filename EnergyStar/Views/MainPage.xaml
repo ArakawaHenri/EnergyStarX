@@ -32,7 +32,7 @@
 				x:Name="EnergyStarToggle"
 				Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
                 <StackPanel>
-                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE868;"/>
+                    <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE869;"/>
                     <TextBlock Text="Start"/>
                 </StackPanel>
             </ToggleButton>

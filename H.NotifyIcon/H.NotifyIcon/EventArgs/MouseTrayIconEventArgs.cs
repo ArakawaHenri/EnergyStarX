@@ -11,7 +11,10 @@ public class MouseTrayIconEventArgs : TrayIconEventArgs
     /// <summary>
     /// 
     /// </summary>
-    public MouseEvent MouseEvent { get; set; }
+    public MouseEvent MouseEvent
+    {
+        get; set;
+    }
 
     /// <summary>
     /// 

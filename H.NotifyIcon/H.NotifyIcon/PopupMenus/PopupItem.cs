@@ -8,7 +8,10 @@ public abstract class PopupItem
     /// <summary>
     /// 
     /// </summary>
-    internal int Id { get; set; }
+    internal int Id
+    {
+        get; set;
+    }
 
     /// <summary>
     /// 

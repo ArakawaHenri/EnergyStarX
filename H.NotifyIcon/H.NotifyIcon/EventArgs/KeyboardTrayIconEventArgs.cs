@@ -11,7 +11,10 @@ public class KeyboardTrayIconEventArgs : TrayIconEventArgs
     /// <summary>
     /// 
     /// </summary>
-    public KeyboardEvent KeyboardEvent { get; set; }
+    public KeyboardEvent KeyboardEvent
+    {
+        get; set;
+    }
 
     /// <summary>
     /// 

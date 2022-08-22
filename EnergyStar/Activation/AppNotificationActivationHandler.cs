@@ -1,10 +1,8 @@
 ﻿using EnergyStar.Contracts.Services;
-using EnergyStar.ViewModels;
 
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.Windows.AppLifecycle;
-using Microsoft.Windows.AppNotifications;
 
 namespace EnergyStar.Activation;
 

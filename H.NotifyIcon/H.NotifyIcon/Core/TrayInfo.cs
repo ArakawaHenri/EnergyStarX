@@ -21,7 +21,7 @@ public static class TrayInfo
     /// <returns>Tray coordinates.</returns>
     public static bool IsShellOpen()
     {
-        return PInvoke.FindWindow("Shell_TrayWnd", null).Value != IntPtr.Zero; 
+        return PInvoke.FindWindow("Shell_TrayWnd", null).Value != IntPtr.Zero;
     }
 
     /// <summary>

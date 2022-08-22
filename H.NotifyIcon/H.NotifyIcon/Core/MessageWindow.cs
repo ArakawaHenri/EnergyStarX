@@ -32,14 +32,20 @@ public class MessageWindow : IDisposable
     /// The ID of the message that is being received if the
     /// taskbar is (re)started.
     /// </summary>
-    private uint TaskbarRestartMessageId { get; set; }
+    private uint TaskbarRestartMessageId
+    {
+        get; set;
+    }
 
     /// <summary>
     /// Used to track whether a mouse-up event is just
     /// the aftermath of a double-click and therefore needs
     /// to be suppressed.
     /// </summary>
-    private bool IsDoubleClick { get; set; }
+    private bool IsDoubleClick
+    {
+        get; set;
+    }
 
     /// <summary>
     /// A delegate that processes messages of the hidden
@@ -47,17 +53,26 @@ public class MessageWindow : IDisposable
     /// this reference makes sure we don't loose our reference
     /// to the message window.
     /// </summary>
-    private WNDPROC MessageHandler { get; set; }
+    private WNDPROC MessageHandler
+    {
+        get; set;
+    }
 
     /// <summary>
     /// Window class ID.
     /// </summary>
-    internal string WindowId { get; private set; }
+    internal string WindowId
+    {
+        get; private set;
+    }
 
     /// <summary>
     /// Handle for the message window.
     /// </summary>
-    private HWND HWND { get; set; }
+    private HWND HWND
+    {
+        get; set;
+    }
 
     /// <summary>
     /// Handle for the message window.
@@ -306,7 +321,10 @@ public class MessageWindow : IDisposable
     /// <summary>
     /// Set to true as soon as <c>Dispose</c> has been invoked.
     /// </summary>
-    public bool IsDisposed { get; private set; }
+    public bool IsDisposed
+    {
+        get; private set;
+    }
 
     /// <summary>
     /// Disposes the object.

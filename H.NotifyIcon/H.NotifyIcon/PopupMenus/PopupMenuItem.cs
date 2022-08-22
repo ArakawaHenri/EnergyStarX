@@ -21,7 +21,10 @@ public class PopupMenuItem : PopupItem
     public event EventHandler<EventArgs>? Click;
 
     /// <inheritdoc/>
-    public bool Checked { get; set; }
+    public bool Checked
+    {
+        get; set;
+    }
 
     /// <inheritdoc/>
     public bool Enabled { get; set; } = true;
@@ -29,7 +32,10 @@ public class PopupMenuItem : PopupItem
     //public Image? Image { get; set; }
 
     /// <inheritdoc/>
-    public PopupMenu? SubMenu { get; }
+    public PopupMenu? SubMenu
+    {
+        get;
+    }
 
     /// <inheritdoc/>
     public string Text { get; set; } = string.Empty;

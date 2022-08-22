@@ -1,5 +1,5 @@
-﻿using H.NotifyIcon.Core;
-using System;
+﻿using System;
+using H.NotifyIcon.Core;
 
 namespace H.NotifyIcon.Interop;
 

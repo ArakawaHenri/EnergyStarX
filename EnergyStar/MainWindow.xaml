@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:windowex="using:WinUIEx"
     MinWidth="1065"
-    MinHeight="550"
+    MinHeight="570"
     PersistenceId="MainWindow"
     mc:Ignorable="d">
     <windowex:WindowEx.Backdrop>

@@ -29,23 +29,35 @@ public class TrayIcon : IDisposable
     /// <remarks>
     /// Note: Windows associates a Guid with the path of the binary, so you must use the new Guid when you change the path.
     /// </remarks>
-    public Guid Id { get; private set; }
+    public Guid Id
+    {
+        get; private set;
+    }
 
     /// <summary>
     /// Indicates whether the taskbar icon has been created or not.
     /// </summary>
-    public bool IsCreated { get; private set; }
+    public bool IsCreated
+    {
+        get; private set;
+    }
 
     /// <summary>
     /// IsEnabled?
     /// </summary>
-    public bool IsDesignMode { get; set; }
+    public bool IsDesignMode
+    {
+        get; set;
+    }
 
     /// <summary>
     /// A handle to the icon that should be displayed. Just
     /// <c>Icon.Handle</c>.
     /// </summary>
-    public nint Icon { get; set; }
+    public nint Icon
+    {
+        get; set;
+    }
 
     /// <summary>
     /// 
@@ -57,7 +69,10 @@ public class TrayIcon : IDisposable
     /// taskbar status area.
     /// By default, if not set, MessageWindow will be created.
     /// </summary>
-    public nint WindowHandle { get; set; }
+    public nint WindowHandle
+    {
+        get; set;
+    }
 
     /// <summary>
     /// Receives messages from the taskbar icon.
@@ -89,7 +104,10 @@ public class TrayIcon : IDisposable
     /// pop-up UI. If the application wants to show the standard tooltip with NOTIFYICON_VERSION_4, 
     /// it can specify NIF_SHOWTIP to indicate the standard tooltip should still be shown.
     /// </summary>
-    public bool UseStandardTooltip { get; set; }
+    public bool UseStandardTooltip
+    {
+        get; set;
+    }
 
     #endregion
 
@@ -301,7 +319,7 @@ public class TrayIcon : IDisposable
         {
             return false;
         }
-        
+
         OnRemoved();
         return true;
     }
@@ -581,7 +599,10 @@ public class TrayIcon : IDisposable
     /// <summary>
     /// Set to true as soon as <c>Dispose</c> has been invoked.
     /// </summary>
-    public bool IsDisposed { get; private set; }
+    public bool IsDisposed
+    {
+        get; private set;
+    }
 
     /// <summary>
     /// Checks if the object has been disposed and

@@ -11,7 +11,10 @@ public class TrayIconEventArgs : EventArgs
     /// <summary>
     /// 
     /// </summary>
-    public Point Point { get; set; }
+    public Point Point
+    {
+        get; set;
+    }
 
     /// <summary>
     /// 
