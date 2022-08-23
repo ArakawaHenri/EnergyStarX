@@ -16,7 +16,7 @@
     <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
     <ErrorReport>none</ErrorReport>
     <Authors>ArakawaHenri</Authors>
-    <Version>0.2.1.0</Version>
+    <Version>0.2.2.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
