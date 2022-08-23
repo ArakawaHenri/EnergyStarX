@@ -16,8 +16,8 @@ jobs:
     runs-on: windows-latest
     
     env:
-      Solution_Name: EnergyStar_Plus.sln
-      Project_Name: EnergyStarPlus
+      Solution_Name: EnergyStar.sln
+      Project_Name: EnergyStar
 
     steps:
       - name: Checkout
