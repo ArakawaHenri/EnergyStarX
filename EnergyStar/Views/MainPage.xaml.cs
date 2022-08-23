@@ -87,7 +87,7 @@ public sealed partial class MainPage : Page
         {
             ESService = new(new ThreadStart(EnergyManager.EnergyManager.MainService));
             ESService.Start();
-            EnergyStarStatusText.Text = "EnergyStar: On";
+            EnergyStarStatusText.Text = "On";
         }
         catch (Exception ex)
         {
@@ -108,7 +108,7 @@ public sealed partial class MainPage : Page
             {
                 EnergyManager.EnergyManager.StopService();
             }
-            EnergyStarStatusText.Text = "EnergyStar: Off";
+            EnergyStarStatusText.Text = "Off";
         }
         catch (Exception ex)
         {
