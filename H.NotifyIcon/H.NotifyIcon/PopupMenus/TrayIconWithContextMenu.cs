@@ -111,7 +111,7 @@ public class TrayIconWithContextMenu : TrayIcon
 
         if (args.MouseEvent == MouseEvent.IconLeftMouseUp)
         {
-            PInvoke.ShowWindow((HWND)MainWindowHandle.Value, (SHOW_WINDOW_CMD)5);
+            PInvoke.ShowWindow((HWND)MainWindowHandle.Value, (SHOW_WINDOW_CMD)9);
             PInvoke.SetForegroundWindow((HWND)MainWindowHandle.Value);
             //if (MainWindowLocker != null)
             //{

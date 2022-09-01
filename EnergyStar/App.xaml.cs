@@ -2,6 +2,7 @@
 using EnergyStar.Contracts.Services;
 using EnergyStar.Core.Contracts.Services;
 using EnergyStar.Core.Services;
+using EnergyStar.Helpers;
 using EnergyStar.Models;
 using EnergyStar.Notifications;
 using EnergyStar.Services;
@@ -11,6 +12,7 @@ using H.NotifyIcon.Core;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
+using Microsoft.Windows.AppLifecycle;
 
 namespace EnergyStar;
 
@@ -101,14 +103,17 @@ public partial class App : Application
 
         //App.GetService<IAppNotificationService>().Show(string.Format("AppNotificationSamplePayload".GetLocalized(), AppContext.BaseDirectory));
 
-        await App.GetService<IActivationService>().ActivateAsync(args);
+        if (AppInstance.GetCurrent().GetActivatedEventArgs().Kind != ExtendedActivationKind.StartupTask)
+        {
+            await App.GetService<IActivationService>().ActivateAsync(args);
+        }
 
         MainWindow.SetWindowSize(1070, 575);
         Thread createIconThread = new(new ThreadStart(CreateIcon));
         createIconThread.Start();
     }
 
-    public void CreateIcon()
+    public static void CreateIcon()
     {
         using var icon = new System.Drawing.Icon(Path.Combine(AppContext.BaseDirectory, "Assets/WindowIcon.ico"));
         using var trayIcon = new TrayIconWithContextMenu

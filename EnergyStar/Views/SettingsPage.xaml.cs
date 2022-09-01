@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using EnergyStar.Helpers;
 using EnergyStar.ViewModels;
 using IWshRuntimeLibrary;
@@ -15,8 +17,8 @@ public sealed partial class SettingsPage : Page
         get;
     }
 
-    private bool AutoStart;
     private StartupTask? startupTask;
+    private AutoStart autoStart;
 
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
@@ -32,16 +34,16 @@ public sealed partial class SettingsPage : Page
             }
             if (startupTask != null && (startupTask.State == StartupTaskState.Enabled || startupTask.State == StartupTaskState.EnabledByPolicy))
             {
-                AutoStart = true;
+                autoStart.IsAutoStart = true;
             }
             else
             {
-                AutoStart = false;
+                autoStart.IsAutoStart = false;
             }
         }
         else
         {
-            AutoStart = IsAutoStart();
+            autoStart.IsAutoStart = IsAutoStart();
         }
     }
 
@@ -61,6 +63,7 @@ public sealed partial class SettingsPage : Page
     {
         ViewModel = App.GetService<SettingsViewModel>();
         InitializeComponent();
+        autoStart = new();
         if (RuntimeHelper.IsMSIX)
         {
             try
@@ -72,16 +75,16 @@ public sealed partial class SettingsPage : Page
             }
             if (startupTask != null && (startupTask.State == StartupTaskState.Enabled || startupTask.State == StartupTaskState.EnabledByPolicy))
             {
-                AutoStart = true;
+                autoStart.IsAutoStart = true;
             }
             else
             {
-                AutoStart = false;
+                autoStart.IsAutoStart = false;
             }
         }
         else
         {
-            AutoStart = IsAutoStart();
+            autoStart.IsAutoStart = IsAutoStart();
         }
     }
 
@@ -91,7 +94,7 @@ public sealed partial class SettingsPage : Page
         {
             if (startupTask != null && startupTask.State != StartupTaskState.DisabledByPolicy && startupTask.State != StartupTaskState.DisabledByUser)
             {
-                AutoStart = startupTask.RequestEnableAsync().GetAwaiter().GetResult() == StartupTaskState.Enabled || startupTask.RequestEnableAsync().GetResults() == StartupTaskState.EnabledByPolicy;
+                autoStart.IsAutoStart = startupTask.RequestEnableAsync().GetAwaiter().GetResult() == StartupTaskState.Enabled || startupTask.RequestEnableAsync().GetResults() == StartupTaskState.EnabledByPolicy;
             }
             else
             {
@@ -105,7 +108,7 @@ public sealed partial class SettingsPage : Page
         else
         {
             SetAutoStart();
-            AutoStart = IsAutoStart();
+            autoStart.IsAutoStart = IsAutoStart();
         }
     }
 
@@ -116,7 +119,7 @@ public sealed partial class SettingsPage : Page
             if (startupTask != null && startupTask.State != StartupTaskState.EnabledByPolicy)
             {
                 startupTask.Disable();
-                AutoStart = false;
+                autoStart.IsAutoStart = false;
             }
             else
             {
@@ -130,7 +133,7 @@ public sealed partial class SettingsPage : Page
         else
         {
             SetAutoStart(false);
-            AutoStart = IsAutoStart();
+            autoStart.IsAutoStart = IsAutoStart();
         }
     }
 
@@ -166,7 +169,7 @@ public sealed partial class SettingsPage : Page
             }
             else if (shortcutPaths.Count < 1)
             {
-                CreateShortcut(SystemStartPath, QuickName, AppPath, "AppDescription".GetLocalized());
+                CreateShortcut(SystemStartPath, QuickName, AppPath, "AppDescription".GetLocalized(), "----ms-protocol:ms-encodedlaunch:App?ContractId=Windows.StartupTask&TaskId=EnergyStar");
             }
         }
         else
@@ -184,7 +187,7 @@ public sealed partial class SettingsPage : Page
         //CreateDesktopLink(desktopPath, QuickName, appAllPath);
     }
 
-    private bool CreateShortcut(string directory, string shortcutName, string targetPath, string description = "", string iconLocation = "")
+    private bool CreateShortcut(string directory, string shortcutName, string targetPath, string arguments = "", string description = "", string iconLocation = "")
     {
         try
         {
@@ -197,6 +200,7 @@ public sealed partial class SettingsPage : Page
             var shortcut = (IWshRuntimeLibrary.IWshShortcut)shell.CreateShortcut(shortcutPath);
             shortcut.TargetPath = targetPath;
             shortcut.WorkingDirectory = Path.GetDirectoryName(targetPath);
+            shortcut.Arguments = arguments;
             shortcut.WindowStyle = 1;
             shortcut.Description = description;
             shortcut.IconLocation = string.IsNullOrWhiteSpace(iconLocation) ? targetPath : iconLocation;
@@ -270,5 +274,34 @@ public sealed partial class SettingsPage : Page
         {
             CreateShortcut(desktopPath, quickName, appPath, "AppDescription".GetLocalized());
         }
+    }
+}
+
+public class AutoStart : INotifyPropertyChanged
+{
+    private bool isAutoStart;
+    public bool IsAutoStart
+    {
+        get => isAutoStart;
+        set
+        {
+            if (value != isAutoStart)
+            {
+                isAutoStart = value;
+                NotifyPropertyChanged();
+            }
+        }
+    }
+
+    public AutoStart()
+    {
+        isAutoStart = false;
+    }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

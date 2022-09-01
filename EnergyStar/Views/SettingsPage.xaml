@@ -62,7 +62,7 @@
                     </StackPanel>
                     <TextBlock x:Uid="Settings_StartUp" />
                     <StackPanel Margin="{StaticResource XSmallTopMargin}">
-                        <CheckBox x:Uid="Settings_StartWithWindows" Checked="Startup_Checked" Unchecked="Startup_Unchecked" IsChecked="{x:Bind AutoStart, Mode=OneWay}" />
+                        <CheckBox x:Uid="Settings_StartWithWindows" Checked="Startup_Checked" Unchecked="Startup_Unchecked" IsChecked="{x:Bind autoStart.IsAutoStart, Mode=OneWay}" />
                     </StackPanel>
                 </StackPanel>
 
