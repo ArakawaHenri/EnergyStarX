@@ -2,7 +2,6 @@
 using EnergyStar.Contracts.Services;
 using EnergyStar.Core.Contracts.Services;
 using EnergyStar.Core.Services;
-using EnergyStar.Helpers;
 using EnergyStar.Models;
 using EnergyStar.Notifications;
 using EnergyStar.Services;

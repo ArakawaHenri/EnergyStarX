@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using EnergyStar.Helpers;
+﻿using EnergyStar.Helpers;
 using Microsoft.UI.Windowing;
 
 namespace EnergyStar;

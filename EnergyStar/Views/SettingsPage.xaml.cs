@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using EnergyStar.Helpers;
 using EnergyStar.ViewModels;
@@ -18,7 +17,7 @@ public sealed partial class SettingsPage : Page
     }
 
     private StartupTask? startupTask;
-    private AutoStart autoStart;
+    private readonly AutoStart autoStart;
 
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
