@@ -3,9 +3,9 @@ using Microsoft.UI.Xaml.Data;
 
 namespace EnergyStar.Helpers;
 
-public class EnumToBooleanConverter : IValueConverter
+public class ThemeToBooleanConverter : IValueConverter
 {
-    public EnumToBooleanConverter()
+    public ThemeToBooleanConverter()
     {
     }
 

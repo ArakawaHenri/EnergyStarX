@@ -1,4 +1,5 @@
-﻿using EnergyStar.ViewModels;
+﻿using EnergyStar.Helpers;
+using EnergyStar.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
@@ -34,7 +35,7 @@ public sealed partial class MainPage : Page
         {
             Title = title,
             Content = text,
-            CloseButtonText = "OK",
+            CloseButtonText = "OK".GetLocalized(),
             XamlRoot = Content.XamlRoot
         };
         await cd.ShowAsync();

@@ -43,6 +43,9 @@
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
       <Extensions>
+          <desktop:Extension Category="windows.startupTask" EntryPoint="Windows.FullTrustApplication">
+              <desktop:StartupTask TaskId="EnergyStar" Enabled="false" DisplayName="EnergyStar X" />
+          </desktop:Extension>
           <desktop:Extension Category="windows.toastNotificationActivation">
               <desktop:ToastNotificationActivation ToastActivatorCLSID="D9DADFB7-5CB7-45A6-BA58-5981A8368E38" />
           </desktop:Extension>

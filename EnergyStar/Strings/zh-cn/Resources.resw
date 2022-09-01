@@ -198,12 +198,24 @@
     <value>一般</value>
   </data>
   <data name="Settings_StartUp.Text" xml:space="preserve">
-    <value>自启动</value>
+    <value>运行</value>
   </data>
   <data name="Settings_Strategy.Text" xml:space="preserve">
-    <value>运行策略</value>
+    <value>策略</value>
   </data>
   <data name="Settings_AlwaysThrottle.Content" xml:space="preserve">
     <value>电源接入时仍执行后台程序限制</value>
+  </data>
+  <data name="Settings_StartWithWindows.Content" xml:space="preserve">
+    <value>随系统启动</value>
+  </data>
+  <data name="EnabledByPolicy" xml:space="preserve">
+    <value>启动项受策略强制开启，请联系管理员。</value>
+  </data>
+  <data name="ManuallyDisabled" xml:space="preserve">
+    <value>启动项被计算机策略或人工禁用，请手动开启或联系管理员。</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>确定</value>
   </data>
 </root>

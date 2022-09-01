@@ -9,7 +9,7 @@
     xmlns:em="using:EnergyManager"
     mc:Ignorable="d">
     <Page.Resources>
-        <helpers:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
+        <helpers:ThemeToBooleanConverter x:Key="ThemeToBooleanConverter" />
     </Page.Resources>
     <Grid>
         <ScrollViewer>
@@ -23,7 +23,7 @@
                         <RadioButton
                         x:Uid="Settings_Theme_Light"
                         Command="{x:Bind ViewModel.SwitchThemeCommand}"
-                        IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=OneWay}"
+                        IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource ThemeToBooleanConverter}, ConverterParameter=Light, Mode=OneWay}"
                         FontSize="15"
                         GroupName="AppTheme">
                             <RadioButton.CommandParameter>
@@ -33,7 +33,7 @@
                         <RadioButton
                         x:Uid="Settings_Theme_Dark"
                         Command="{x:Bind ViewModel.SwitchThemeCommand}"
-                        IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=OneWay}"
+                        IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource ThemeToBooleanConverter}, ConverterParameter=Dark, Mode=OneWay}"
                         FontSize="15"
                         GroupName="AppTheme">
                             <RadioButton.CommandParameter>
@@ -43,7 +43,7 @@
                         <RadioButton
                         x:Uid="Settings_Theme_Default"
                         Command="{x:Bind ViewModel.SwitchThemeCommand}"
-                        IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default, Mode=OneWay}"
+                        IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource ThemeToBooleanConverter}, ConverterParameter=Default, Mode=OneWay}"
                         FontSize="15"
                         GroupName="AppTheme">
                             <RadioButton.CommandParameter>
@@ -62,12 +62,7 @@
                     </StackPanel>
                     <TextBlock x:Uid="Settings_StartUp" />
                     <StackPanel Margin="{StaticResource XSmallTopMargin}">
-                        <InfoBar
-                        IsOpen="True"
-                        Severity="Error"
-                        IsClosable="False"
-                        Title="NOT IMPLEMENTED &lt;del>LazyHenriException&lt;/del>"
-                        Message="" />
+                        <CheckBox x:Uid="Settings_StartWithWindows" Checked="Startup_Checked" Unchecked="Startup_Unchecked" IsChecked="{x:Bind AutoStart, Mode=OneWay}" />
                     </StackPanel>
                 </StackPanel>
 

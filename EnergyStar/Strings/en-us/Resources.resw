@@ -174,7 +174,7 @@
     <value>Status</value>
   </data>
   <data name="Platform_Note.Message" xml:space="preserve">
-    <value>The EcoQoS API necessary for EnergyStar requires Windows 11 21H2 (or above) and a modern chip to work.</value>
+    <value>The EcoQoS API necessary for EnergyStar requires Windows 11 21H2 (or above) and a modern processor to work.</value>
   </data>
   <data name="Settings_CreditTo.Text" xml:space="preserve">
     <value>
@@ -204,6 +204,18 @@ This project could not have been born without the support of @imbushuo's origina
     <value>Working Strategy Settings</value>
   </data>
   <data name="Settings_AlwaysThrottle.Content" xml:space="preserve">
-    <value>Throttle background processes even with the power supply connected</value>
+    <value>Throttle background processes even with power supply connected</value>
+  </data>
+  <data name="EnabledByPolicy" xml:space="preserve">
+    <value>Startup Task is enabled by policy, please contact Administrator.</value>
+  </data>
+  <data name="ManuallyDisabled" xml:space="preserve">
+    <value>Startup Task is manually disabled by policy or user, please enable it yourself or contact Administrator.</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Settings_StartWithWindows.Content" xml:space="preserve">
+    <value>Start with Windows</value>
   </data>
 </root>
