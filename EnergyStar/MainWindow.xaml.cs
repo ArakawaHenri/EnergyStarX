@@ -1,6 +1,5 @@
 ﻿using System.Runtime.InteropServices;
 using EnergyStar.Helpers;
-using H.NotifyIcon.Core;
 using Microsoft.UI.Windowing;
 
 namespace EnergyStar;
@@ -42,47 +41,5 @@ public sealed partial class MainWindow : WindowEx
         {
             window.Hide();
         }
-        Thread createIconThread = new(new ThreadStart(CreateIcon));
-        createIconThread.Start();
-    }
-
-    public void CreateIcon()
-    {
-        using var icon = new System.Drawing.Icon(Path.Combine(AppContext.BaseDirectory, "Assets/WindowIcon.ico"));
-        using var trayIcon = new TrayIconWithContextMenu
-        {
-            Icon = icon.Handle,
-            ToolTip = "EnergyStar",
-        };
-        trayIcon.ContextMenu = new PopupMenu
-        {
-            Items =
-            {
-                new PopupMenuItem("Exit", (sender, args) =>
-                {
-                    trayIcon.Dispose();
-                    Environment.Exit(0);
-                }),
-            },
-        };
-        trayIcon.Create();
-        trayIcon.MainWindowHandle = hWnd;
-        trayIcon.MainWindowLocker = new();
-        lock (trayIcon.MainWindowLocker)
-        {
-            Monitor.Wait(trayIcon.MainWindowLocker);
-        }
-        trayIcon.Dispose();
-    }
-}
-
-[ComImport]
-[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-[Guid("EECDBF0E-BAE9-4CB6-A68E-9598E1CB57BB")]
-internal interface IWindowNative
-{
-    IntPtr WindowHandle
-    {
-        get;
     }
 }

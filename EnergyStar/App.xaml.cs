@@ -7,7 +7,7 @@ using EnergyStar.Notifications;
 using EnergyStar.Services;
 using EnergyStar.ViewModels;
 using EnergyStar.Views;
-
+using H.NotifyIcon.Core;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
@@ -104,5 +104,36 @@ public partial class App : Application
         await App.GetService<IActivationService>().ActivateAsync(args);
 
         MainWindow.SetWindowSize(1070, 575);
+        Thread createIconThread = new(new ThreadStart(CreateIcon));
+        createIconThread.Start();
+    }
+
+    public void CreateIcon()
+    {
+        using var icon = new System.Drawing.Icon(Path.Combine(AppContext.BaseDirectory, "Assets/WindowIcon.ico"));
+        using var trayIcon = new TrayIconWithContextMenu
+        {
+            Icon = icon.Handle,
+            ToolTip = "EnergyStar",
+        };
+        trayIcon.ContextMenu = new PopupMenu
+        {
+            Items =
+            {
+                new PopupMenuItem("Exit", (sender, args) =>
+                {
+                    trayIcon.Dispose();
+                    Environment.Exit(0);
+                }),
+            },
+        };
+        trayIcon.Create();
+        trayIcon.MainWindowHandle = WinRT.Interop.WindowNative.GetWindowHandle(MainWindow);
+        object Locker = new();
+        lock (Locker)
+        {
+            Monitor.Wait(Locker);
+        }
+        trayIcon.Dispose();
     }
 }

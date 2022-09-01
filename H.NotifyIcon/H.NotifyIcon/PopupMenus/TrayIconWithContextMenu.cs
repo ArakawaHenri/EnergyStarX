@@ -22,7 +22,7 @@ public class TrayIconWithContextMenu : TrayIcon
     }
 
     public IntPtr? MainWindowHandle;
-    public object? MainWindowLocker;
+    //public object? MainWindowLocker;
 
     private Thread? Thread
     {
@@ -112,14 +112,15 @@ public class TrayIconWithContextMenu : TrayIcon
         if (args.MouseEvent == MouseEvent.IconLeftMouseUp)
         {
             PInvoke.ShowWindow((HWND)MainWindowHandle.Value, (SHOW_WINDOW_CMD)5);
-            if (MainWindowLocker != null)
-            {
-                lock (MainWindowLocker)
-                {
-                    Monitor.Pulse(MainWindowLocker);
-                }
+            PInvoke.SetForegroundWindow((HWND)MainWindowHandle.Value);
+            //if (MainWindowLocker != null)
+            //{
+            //    lock (MainWindowLocker)
+            //    {
+            //        Monitor.Pulse(MainWindowLocker);
+            //    }
 
-            }
+            //}
         }
     }
 
