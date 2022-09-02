@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDisplayName" xml:space="preserve">
-    <value>EnergyStar</value>
+    <value>EnergyStar X</value>
   </data>
   <data name="AppDescription" xml:space="preserve">
     <value>限制后台程序的能源消耗以提升电池续航。</value>
@@ -174,7 +174,7 @@
     <value>运行状态</value>
   </data>
   <data name="Platform_Note.Message" xml:space="preserve">
-    <value>EnergyStar 所需的 EcoQoS API 需要 Windows 11 21H2 （或更高版本）和较新发布的处理器。</value>
+    <value>EnergyStar X 所需的 EcoQoS API 需要 Windows 11 21H2 （或更高版本）和较新发布的处理器。</value>
   </data>
   <data name="Settings_CreditTo.Text" xml:space="preserve">
     <value>
@@ -219,6 +219,6 @@
     <value>确定</value>
   </data>
   <data name="Settings_RunOnStart.Content" xml:space="preserve">
-    <value>程序启动时运行EnergyStar</value>
+    <value>程序启动时运行EnergyStar X</value>
   </data>
 </root>

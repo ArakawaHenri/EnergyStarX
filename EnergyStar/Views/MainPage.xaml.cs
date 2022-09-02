@@ -20,11 +20,11 @@ public sealed partial class MainPage : Page
         if (((App)Microsoft.UI.Xaml.Application.Current).ESService != null && ((App)Microsoft.UI.Xaml.Application.Current).ESService.IsAlive)
         {
             EnergyStarToggle.IsChecked = true;
-            EnergyStarStatusText.Text = "EnergyStar: On";
+            EnergyStarStatusText.Text = "EnergyStar X: On";
         }
         else
         {
-            EnergyStarStatusText.Text = "EnergyStar: Off";
+            EnergyStarStatusText.Text = "EnergyStar X: Off";
         }
     }
 
@@ -54,7 +54,7 @@ public sealed partial class MainPage : Page
         {
             ((App)Microsoft.UI.Xaml.Application.Current).ESService = new(new ThreadStart(EnergyManager.EnergyManager.MainService));
             ((App)Microsoft.UI.Xaml.Application.Current).ESService.Start();
-            EnergyStarStatusText.Text = "EnergyStar: On";
+            EnergyStarStatusText.Text = "EnergyStar X: On";
         }
         catch (Exception ex)
         {
@@ -68,14 +68,14 @@ public sealed partial class MainPage : Page
         {
             if (((App)Microsoft.UI.Xaml.Application.Current).ESService == null || !((App)Microsoft.UI.Xaml.Application.Current).ESService.IsAlive)
             {
-                ShowMessageBox("Error", "EnergyStar is not running.");
+                ShowMessageBox("Error", "EnergyStar X is not running.");
                 EnergyManager.EnergyManager.BoostAllInfluencedProcesses();
             }
             else
             {
                 EnergyManager.EnergyManager.StopService();
             }
-            EnergyStarStatusText.Text = "EnergyStar: Off";
+            EnergyStarStatusText.Text = "EnergyStar X: Off";
         }
         catch (Exception ex)
         {

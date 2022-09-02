@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDisplayName" xml:space="preserve">
-    <value>EnergyStar</value>
+    <value>EnergyStar X</value>
   </data>
   <data name="AppDescription" xml:space="preserve">
     <value>Throttle background programs automatically.</value>
@@ -148,7 +148,7 @@
     <value>About</value>
   </data>
   <data name="Settings_AboutDescription.Text" xml:space="preserve">
-    <value>EnergyStar is a tool that automatically throttles background programs to improve battery life.</value>
+    <value>EnergyStar X is a tool that automatically throttles background programs to improve battery life.</value>
   </data>
   <data name="SettingsPage_PrivacyTermsLink.Content" xml:space="preserve">
     <value>Github Page</value>
@@ -174,7 +174,7 @@
     <value>Status</value>
   </data>
   <data name="Platform_Note.Message" xml:space="preserve">
-    <value>The EcoQoS API necessary for EnergyStar requires Windows 11 21H2 (or above) and a modern processor.</value>
+    <value>The EcoQoS API necessary for EnergyStar X requires Windows 11 21H2 (or above) and a modern processor.</value>
   </data>
   <data name="Settings_CreditTo.Text" xml:space="preserve">
     <value>
@@ -219,6 +219,6 @@ This project could not have been born without the support of @imbushuo's origina
     <value>Start with Windows</value>
   </data>
   <data name="Settings_RunOnStart.Content" xml:space="preserve">
-    <value>Run EnergyStar on application start.</value>
+    <value>Run EnergyStar X on application start.</value>
   </data>
 </root>
