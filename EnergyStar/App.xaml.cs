@@ -101,18 +101,26 @@ public partial class App : Application
         base.OnLaunched(args);
 
         //App.GetService<IAppNotificationService>().Show(string.Format("AppNotificationSamplePayload".GetLocalized(), AppContext.BaseDirectory));
+        //await App.GetService<IActivationService>().ActivateAsync(args);
 
+        MainWindow.SetWindowSize(1070, 575);
         if (AppInstance.GetCurrent().GetActivatedEventArgs().Kind != ExtendedActivationKind.StartupTask)
         {
             await App.GetService<IActivationService>().ActivateAsync(args);
+            //MainWindow.Hide();
         }
-
-        MainWindow.SetWindowSize(1070, 575);
+        else
+        {
+            await App.GetService<IActivationService>().SilentActivateAsync(args);
+        }
         Thread createIconThread = new(new ThreadStart(CreateIcon));
         createIconThread.Start();
     }
 
-    public static void CreateIcon()
+    public bool RunOnStart = false;
+    public Thread? ESService;
+
+    private static void CreateIcon()
     {
         using var icon = new System.Drawing.Icon(Path.Combine(AppContext.BaseDirectory, "Assets/WindowIcon.ico"));
         using var trayIcon = new TrayIconWithContextMenu

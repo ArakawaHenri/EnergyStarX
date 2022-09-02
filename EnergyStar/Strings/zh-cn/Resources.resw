@@ -218,4 +218,7 @@
   <data name="OK" xml:space="preserve">
     <value>确定</value>
   </data>
+  <data name="Settings_RunOnStart.Content" xml:space="preserve">
+    <value>程序启动时运行EnergyStar</value>
+  </data>
 </root>

@@ -3,4 +3,5 @@
 public interface IActivationService
 {
     Task ActivateAsync(object activationArgs);
+    Task SilentActivateAsync(object activationArgs);
 }

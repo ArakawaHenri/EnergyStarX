@@ -168,7 +168,7 @@ public sealed partial class SettingsPage : Page
             }
             else if (shortcutPaths.Count < 1)
             {
-                CreateShortcut(SystemStartPath, QuickName, AppPath, "AppDescription".GetLocalized(), "----ms-protocol:ms-encodedlaunch:App?ContractId=Windows.StartupTask&TaskId=EnergyStar");
+                CreateShortcut(SystemStartPath, QuickName, AppPath, "----ms-protocol:ms-encodedlaunch:App?ContractId=Windows.StartupTask&TaskId=EnergyStar", "AppDescription".GetLocalized());
             }
         }
         else

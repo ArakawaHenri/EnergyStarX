@@ -218,4 +218,7 @@ This project could not have been born without the support of @imbushuo's origina
   <data name="Settings_StartWithWindows.Content" xml:space="preserve">
     <value>Start with Windows</value>
   </data>
+  <data name="Settings_RunOnStart.Content" xml:space="preserve">
+    <value>Run EnergyStar on application start.</value>
+  </data>
 </root>

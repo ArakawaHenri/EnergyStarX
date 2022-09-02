@@ -2,7 +2,7 @@
 
 namespace EnergyStar.Services;
 
-class SettingsService : ISettingsService
+public class SettingsService : ISettingsService
 {
     private readonly ILocalSettingsService _localSettingsService;
 
@@ -14,6 +14,14 @@ class SettingsService : ISettingsService
     public async Task InitializeAsync()
     {
         EnergyManager.EnergyManager.AlwaysThrottle = await _localSettingsService.ReadSettingAsync<string>("AlwaysThrottle") == "true";
+        if (await _localSettingsService.ReadSettingAsync<string>("RunOnStart") == "true")
+        {
+            ((App)Microsoft.UI.Xaml.Application.Current).RunOnStart = true;
+            {
+                ((App)Microsoft.UI.Xaml.Application.Current).ESService = new(new ThreadStart(EnergyManager.EnergyManager.MainService));
+                ((App)Microsoft.UI.Xaml.Application.Current).ESService.Start();
+            }
+        }
         await Task.CompletedTask;
     }
 

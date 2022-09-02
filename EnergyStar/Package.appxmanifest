@@ -12,7 +12,7 @@
   <Identity
     Name="13522902-BCF4-4AF2-B27F-EAC52F57E66B"
     Publisher="CN=Arakawa Henri"
-    Version="0.2.2.0" />
+    Version="0.9.0.0" />
 
   <Properties>
     <DisplayName>EnergyStar</DisplayName>

@@ -67,6 +67,18 @@ public class SettingsViewModel : ObservableRecipient
         EnergyManager.EnergyManager.AlwaysThrottle = false;
     }
 
+    public async void RunOnStart_Checked(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    {
+        await _settingsService.SaveSettingsAsync("RunOnStart", "true");
+        ((App)Microsoft.UI.Xaml.Application.Current).RunOnStart = true;
+    }
+
+    public async void RunOnStart_Unchecked(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    {
+        await _settingsService.SaveSettingsAsync("RunOnStart", "false");
+        ((App)Microsoft.UI.Xaml.Application.Current).RunOnStart = false;
+    }
+
     private static string GetVersionDescription()
     {
         Version version;

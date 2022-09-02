@@ -45,6 +45,28 @@ public class ActivationService : IActivationService
         await StartupAsync();
     }
 
+    public async Task SilentActivateAsync(object activationArgs)
+    {
+        // Execute tasks before activation.
+        await InitializeAsync();
+
+        // Set the MainWindow Content.
+        if (App.MainWindow.Content == null)
+        {
+            _shell = App.GetService<ShellPage>();
+            App.MainWindow.Content = _shell ?? new Frame();
+        }
+
+        // Handle activation via ActivationHandlers.
+        await HandleActivationAsync(activationArgs);
+
+        // Activate the MainWindow.
+        //App.MainWindow.Activate();
+
+        // Execute tasks after activation.
+        await StartupAsync();
+    }
+
     private async Task HandleActivationAsync(object activationArgs)
     {
         var activationHandler = _activationHandlers.FirstOrDefault(h => h.CanHandle(activationArgs));

@@ -6,7 +6,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:helpers="using:EnergyStar.Helpers"
     xmlns:xaml="using:Microsoft.UI.Xaml"
-    xmlns:em="using:EnergyManager"
+    xmlns:em="using:EnergyManager" 
+    xmlns:energystar="using:EnergyStar"
     mc:Ignorable="d">
     <Page.Resources>
         <helpers:ThemeToBooleanConverter x:Key="ThemeToBooleanConverter" />
@@ -63,6 +64,7 @@
                     <TextBlock x:Uid="Settings_StartUp" />
                     <StackPanel Margin="{StaticResource XSmallTopMargin}">
                         <CheckBox x:Uid="Settings_StartWithWindows" Checked="Startup_Checked" Unchecked="Startup_Unchecked" IsChecked="{x:Bind autoStart.IsAutoStart, Mode=OneWay}" />
+                        <CheckBox x:Uid="Settings_RunOnStart" Checked="ViewModel.RunOnStart_Checked" Unchecked="ViewModel.RunOnStart_Unchecked" IsChecked="{x:Bind ((energystar:App)xaml:Application.Current).RunOnStart}" />
                     </StackPanel>
                 </StackPanel>
 
