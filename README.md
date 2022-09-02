@@ -26,6 +26,6 @@ Throttle background programs automatically for better battery life.
 
 ## Privacy Statement
 
-EnergyStar X does not collect any information, and does not guarantee any responsibility for any privacy or security issue of yours.
+EnergyStar X does not collect any information, and is not guaranteed to be responsible for the security of any of your privacy concerns as well.
 
 EnergyStar X不会收集您的任何信息，也不保证对您的任何隐私安全问题负责。
