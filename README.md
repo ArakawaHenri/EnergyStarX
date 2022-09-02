@@ -20,11 +20,11 @@ Throttle background programs automatically for better battery life.
 - Program whitelisting has not yet been implemented. 
 - In some special cases this may result in programs that need performance being throttled because they are in the background. For example the JVM while the Java version of Minecraft is running. 
 
-## Credits to 
-
-- This Project could not have been born without the support of [@imbushuo's original project](https://github.com/imbushuo/EnergyStar) and [@Shisheng233](https://github.com/Shisheng233). 
-
 ## Privacy Statement 
 
 EnergyStar X does not collect any information, and is not guaranteed to be responsible for any privacy issues as well.<br>
 EnergyStar X不会收集您的任何信息，也不保证对您的任何隐私安全问题负责。 
+
+## Credits to 
+
+- This Project could not have been born without the support of [@imbushuo's original project](https://github.com/imbushuo/EnergyStar) and [@Shisheng233](https://github.com/Shisheng233). 
