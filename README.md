@@ -1,6 +1,6 @@
 # EnergyStar-GUI
 
-<img src=https://user-images.githubusercontent.com/17510335/186140548-4d4876cc-7381-4b5e-bb34-3914e2305a74.png width=240 height=240 />
+<img src=https://user-images.githubusercontent.com/17510335/188151471-c3793437-a3ff-40bf-9168-efcbd3bd2613.png width=240 height=240 />
 Throttle background programs automatically for better battery life.
 
 ## Requirements
