@@ -23,3 +23,9 @@ Throttle background programs automatically for better battery life.
 ## Credits to
 
 - This Project could not have been born without the support of [@imbushuo's original project](https://github.com/imbushuo/EnergyStar) and [@Shisheng233](https://github.com/Shisheng233).
+
+## Privacy Statement
+
+EnergyStar X does not collect any information, and does not guarantee any responsibility for any privacy or security issue of yours.
+
+EnergyStar X不会收集您的任何信息，也不保证对您的任何隐私安全问题负责。
