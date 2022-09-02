@@ -174,7 +174,7 @@
     <value>Status</value>
   </data>
   <data name="Platform_Note.Message" xml:space="preserve">
-    <value>The EcoQoS API necessary for EnergyStar requires Windows 11 21H2 (or above) and a modern processor to work.</value>
+    <value>The EcoQoS API necessary for EnergyStar requires Windows 11 21H2 (or above) and a modern processor.</value>
   </data>
   <data name="Settings_CreditTo.Text" xml:space="preserve">
     <value>
