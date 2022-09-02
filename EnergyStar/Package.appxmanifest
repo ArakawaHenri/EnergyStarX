@@ -10,13 +10,13 @@
   IgnorableNamespaces="uap rescap genTemplate">
 
   <Identity
-    Name="13522902-BCF4-4AF2-B27F-EAC52F57E66B"
-    Publisher="CN=Arakawa Henri"
+    Name="59904ArakawaHenri.EnergyStarX"
+    Publisher="CN=C0D1384D-E8E4-4EB4-BA1F-9C2F7646A5FC"
     Version="0.9.0.0" />
 
   <Properties>
-    <DisplayName>EnergyStar</DisplayName>
-    <PublisherDisplayName>ArakawaHenri</PublisherDisplayName>
+    <DisplayName>EnergyStar X</DisplayName>
+    <PublisherDisplayName>Arakawa Henri</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

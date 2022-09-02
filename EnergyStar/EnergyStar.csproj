@@ -15,7 +15,7 @@
     <EnableMsixTooling>true</EnableMsixTooling>
     <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
     <ErrorReport>none</ErrorReport>
-    <Authors>ArakawaHenri</Authors>
+    <Authors>Arakawa Henri</Authors>
     <Version>0.9.0.0</Version>
   </PropertyGroup>
 
