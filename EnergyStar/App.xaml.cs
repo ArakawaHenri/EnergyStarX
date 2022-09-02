@@ -1,4 +1,5 @@
-﻿using EnergyStar.Activation;
+﻿using System.Diagnostics;
+using EnergyStar.Activation;
 using EnergyStar.Contracts.Services;
 using EnergyStar.Core.Contracts.Services;
 using EnergyStar.Core.Services;
@@ -43,6 +44,12 @@ public partial class App : Application
 
     public App()
     {
+        var mainInstance = Microsoft.Windows.AppLifecycle.AppInstance.FindOrRegisterForKey("EnergyStarXInstanceKey1145141919810");
+        if (!mainInstance.IsCurrent)
+        {
+            mainInstance.RedirectActivationToAsync(Microsoft.Windows.AppLifecycle.AppInstance.GetCurrent().GetActivatedEventArgs()).GetAwaiter();
+            Process.GetCurrentProcess().Kill();
+        }
         InitializeComponent();
 
         Host = Microsoft.Extensions.Hosting.Host.
