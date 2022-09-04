@@ -11,7 +11,7 @@ namespace EnergyStar.Services;
 
 public class LocalSettingsService : ILocalSettingsService
 {
-    private const string _defaultApplicationDataFolder = "EnergyStar/ApplicationData";
+    private const string _defaultApplicationDataFolder = "EnergyStarX/ApplicationData";
     private const string _defaultLocalSettingsFile = "LocalSettings.json";
 
     private readonly IFileService _fileService;
