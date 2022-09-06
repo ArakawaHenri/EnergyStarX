@@ -5,7 +5,7 @@ using EnergyStar.Contracts.Services;
 
 using Microsoft.Windows.AppNotifications;
 
-namespace EnergyStar.Services;
+namespace EnergyStar.Notifications;
 
 public class AppNotificationService : IAppNotificationService
 {

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnergyStarX", "EnergyStar\EnergyStarX.csproj", "{FD74DAB4-BBD3-484E-84E9-BBBC0335008C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnergyStar", "EnergyStar\EnergyStar.csproj", "{FD74DAB4-BBD3-484E-84E9-BBBC0335008C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnergyStar.Core", "EnergyStar.Core\EnergyStar.Core.csproj", "{6DAE3128-C8E3-4FE2-B4B2-4ED8C037A434}"
 EndProject
