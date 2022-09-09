@@ -18,8 +18,8 @@ Throttle background programs automatically for better battery life.
 
 ### MSIX Packaged
 
-- If you prefer to get releases via MSIX packages, you can:
-<img src=https://getbadgecdn.azureedge.net/images/en-us%20dark.svg width=360 height=100 />
+- If you prefer to get releases via MSIX packages, you can:<br>
+<a href="https://www.microsoft.com/store/apps/9NM58D33RWHJ"><img src=https://getbadgecdn.azureedge.net/images/en-us%20dark.svg width=240 height=100 /></a> 
 
 ## Known Issues 
 
