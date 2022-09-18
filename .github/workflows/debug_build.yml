@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         configuration: [Debug]
-        platform: [x64, x86, arm64]
+        platform: [x64, arm64]
 
     runs-on: windows-latest
     
@@ -38,3 +38,10 @@ jobs:
 
       - name: Build
         run: msbuild $env:Solution_Name /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }}
+        
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: EnergyStarX Debug CI Build
+          path: "D:\\a\\EnergyStarX\\EnergyStarX\\EnergyStar\\bin\\${{ matrix.platform }}"
+            
