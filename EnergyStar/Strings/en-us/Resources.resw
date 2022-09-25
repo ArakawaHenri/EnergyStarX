@@ -154,7 +154,7 @@
     <value>Github Page</value>
   </data>
   <data name="SettingsPage_PrivacyTermsLink.NavigateUri" xml:space="preserve">
-    <value>https://github.com/ArakawaHenri/EnergyStar-GUI</value>
+    <value>https://github.com/ArakawaHenri/EnergyStarX</value>
   </data>
   <data name="AppNotificationSamplePayload" xml:space="preserve">
     <value>&lt;toast launch="action=ToastClick"&gt;
@@ -220,5 +220,11 @@ This project could not have been born without the support of @imbushuo's origina
   </data>
   <data name="Settings_RunOnStart.Content" xml:space="preserve">
     <value>Run EnergyStar X on application start.</value>
+  </data>
+  <data name="Settings_Compatibility.Text" xml:space="preserve">
+    <value>Compatibility Test</value>
+  </data>
+  <data name="Settings_CompatibilityTester.Content" xml:space="preserve">
+    <value>Start Test</value>
   </data>
 </root>

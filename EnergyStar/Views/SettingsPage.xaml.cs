@@ -274,6 +274,27 @@ public sealed partial class SettingsPage : Page
             CreateShortcut(desktopPath, quickName, appPath, "AppDescription".GetLocalized());
         }
     }
+
+    private void ButtonCompatibilityTester_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    {
+        try
+        {
+            if (Environment.OSVersion.Version.Build < 22000 )
+            {
+                ShowMessageBox("Error", "You are running on an unsupported platform.");
+                return;
+            }
+            else
+            {
+                ShowMessageBox("Info", "Your platform is supported.");
+                return;
+            }
+        }
+        catch(Exception ex)
+        {
+            ShowMessageBox("Error", ex.Message);
+        }
+    }
 }
 
 public class AutoStart : INotifyPropertyChanged

@@ -16,6 +16,12 @@
         <ScrollViewer>
             <StackPanel
             x:Name="ContentArea">
+                <TextBlock x:Uid="Settings_Compatibility" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                
+                <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
+                    <Button x:Uid="Settings_CompatibilityTester" Style="{StaticResource AccentButtonStyle}" Click="ButtonCompatibilityTester_Click"/>
+                </StackPanel>
+                
                 <TextBlock x:Uid="Settings_Personalization" Style="{ThemeResource SubtitleTextBlockStyle}" />
                 <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
                     <TextBlock x:Uid="Settings_Theme" />
