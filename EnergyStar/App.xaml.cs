@@ -47,7 +47,18 @@ public partial class App : Application
         var mainInstance = Microsoft.Windows.AppLifecycle.AppInstance.FindOrRegisterForKey("EnergyStarXInstanceKey1145141919810");
         if (!mainInstance.IsCurrent)
         {
-            mainInstance.RedirectActivationToAsync(Microsoft.Windows.AppLifecycle.AppInstance.GetCurrent().GetActivatedEventArgs()).GetAwaiter();
+            //mainInstance.RedirectActivationToAsync(Microsoft.Windows.AppLifecycle.AppInstance.GetCurrent().GetActivatedEventArgs()).GetAwaiter();
+            var xmlPayload = new string($@"
+        <toast>    
+            <visual>    
+                <binding template=""ToastGeneric"">    
+                    <text>EnergyStar X is already running!</text>
+                    <text>There is another EnergyStar X Instance, exiting...</text>    
+                </binding>
+            </visual>  
+        </toast>");
+            var toast = new Microsoft.Windows.AppNotifications.AppNotification(xmlPayload);
+            Microsoft.Windows.AppNotifications.AppNotificationManager.Default.Show(toast);
             Process.GetCurrentProcess().Kill();
         }
         InitializeComponent();

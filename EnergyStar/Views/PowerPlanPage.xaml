@@ -6,12 +6,59 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid x:Name="ContentArea">
-        <InfoBar
-            IsOpen="True"
-            Severity="Error"
-            IsClosable="False"
-            Title="NOT IMPLEMENTED &lt;del>LazyHenriException&lt;/del>"
-            Message="" />
+    <Page.Resources>
+        <DataTemplate x:Name="taskRuleTemplate" x:Key="taskRuleTemplate">
+            <Grid x:Name="taskRuleTemplateGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="TaskName" Text="{Binding Path=RuleItemNotified.TaskName, Mode=TwoWay}" Grid.Column="0" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,3,0,3" IsReadOnly="{Binding Path=LstRO.LstRO}" />
+                <TextBox x:Name="Description" Text="{Binding Path=RuleItemNotified.Description, Mode=TwoWay}" Grid.Column="1" TextWrapping="Wrap" AcceptsReturn="True" TextAlignment="Right" Margin="5,3,0,3" IsReadOnly="{Binding Path=LstRO.LstRO}" />
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+    
+    <Grid x:Name="ContentArea" HorizontalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" x:Name="btnColumn" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <ListView HorizontalAlignment="Stretch"
+                  Grid.Column="0"
+                  Grid.Row="0"
+                  Grid.RowSpan="4"
+                  Margin="20,0,20,20"
+                  x:Name="ListBox_Rule"
+                  SelectionMode="None"
+                  BorderThickness="1"
+                  BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
+                  ItemTemplate="{StaticResource taskRuleTemplate}"/>
+        <Button x:Name="btnEdit"
+                Grid.Column="1" 
+                Grid.Row="0"
+                Margin="3"
+                HorizontalAlignment="Stretch"
+                Content="Edit"
+                Click="EditClick" />
+        <Button x:Name="btnImport"
+                Grid.Column="1" 
+                Grid.Row="1"
+                Margin="3"
+                HorizontalAlignment="Stretch"
+                Content="Import" />
+        <Button x:Name="btnExport"
+                Grid.Column="1" 
+                Grid.Row="2"
+                Margin="3"
+                HorizontalAlignment="Stretch"
+                Content="Export" />
     </Grid>
 </Page>
