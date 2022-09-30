@@ -8,6 +8,8 @@ namespace EnergyManager;
 
 public class EnergyManager
 {
+    private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
     public static readonly HashSet<string> BypassProcessList = new()
     {
         // Not ourselves
@@ -149,12 +151,14 @@ public class EnergyManager
         var bypass = BypassProcessList.Contains(appName.ToLowerInvariant());
         if (!bypass)
         {
+            Logger.Info($"Core: Boost {appName} ({procId})");
             Debug.WriteLine($"Boost {appName} ({procId})");
             ToggleEfficiencyMode(procHandle, false);
         }
 
         if (pendingProcPid != 0)
         {
+            Logger.Info($"Core: Throttle {pendingProcName} ({pendingProcPid})");
             Debug.WriteLine($"Throttle {pendingProcName} ({pendingProcPid})");
 
             var prevProcHandle = Win32API.OpenProcess((uint)Win32API.ProcessAccessFlags.SetInformation, false, pendingProcPid);
@@ -212,6 +216,7 @@ public class EnergyManager
 
     private static async void AutoThrottleProc()
     {
+        Logger.Info("Core: AutoThrottleProc started");
         Debug.WriteLine("Automatic throttling service started.");
         while (!cts.IsCancellationRequested)
         {
@@ -223,6 +228,7 @@ public class EnergyManager
             }
             catch (OperationCanceledException)
             {
+                Logger.Info("Core: AutoThrottleProc stopped");
                 Debug.WriteLine("Automatic throttling service stopped.");
                 break;
             }
@@ -236,10 +242,12 @@ public class EnergyManager
         switch (powerStatus.ACLineStatus)
         {
             case Win32API.SYSTEM_POWER_STATUS.AC_LINE_STATUS_OFFLINE:
+                Logger.Debug("Core: AC disconnected");
                 Debug.WriteLine("AC disconnected");
                 EnergyManager.IsAcConnected = false;
                 break;
             case Win32API.SYSTEM_POWER_STATUS.AC_LINE_STATUS_ONLINE:
+                Logger.Debug("Core: AC connected");
                 Debug.WriteLine("AC connected");
                 EnergyManager.IsAcConnected = true;
                 break;
@@ -270,6 +278,7 @@ public class EnergyManager
             {
                 if (msg.Message == Win32API.CUSTOM_QUIT)
                 {
+                    Logger.Info("Core: Quitting MainService");
                     Debug.WriteLine("MainService Quitting...");
                     //cts.Cancel();
                     break;
@@ -287,6 +296,7 @@ public class EnergyManager
         cts.Cancel();
         BoostAllInfluencedProcesses();
         serviceThreadId = IntPtr.Zero;
+        Logger.Info("Core: Receive GUI's call to stop");
         Debug.WriteLine("GUI called to stop");
     }
 }

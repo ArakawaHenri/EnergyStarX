@@ -107,6 +107,8 @@ public partial class App : Application
     {
         base.OnLaunched(args);
 
+        Logger.Info("GUI: Initialized");
+
         //App.GetService<IAppNotificationService>().Show(string.Format("AppNotificationSamplePayload".GetLocalized(), AppContext.BaseDirectory));
         //await App.GetService<IActivationService>().ActivateAsync(args);
 
@@ -142,6 +144,7 @@ public partial class App : Application
                 new PopupMenuItem("Exit", (sender, args) =>
                 {
                     trayIcon.Dispose();
+                    Logger.Info("EnergyStarX: Ex(c)ited from tray icon");
                     Environment.Exit(0);
                 }),
             },
@@ -155,4 +158,6 @@ public partial class App : Application
         }
         trayIcon.Dispose();
     }
+
+    public static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 }
