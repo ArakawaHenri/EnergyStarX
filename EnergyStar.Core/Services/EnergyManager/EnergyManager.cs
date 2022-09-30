@@ -149,13 +149,13 @@ public class EnergyManager
         var bypass = BypassProcessList.Contains(appName.ToLowerInvariant());
         if (!bypass)
         {
-            Console.WriteLine($"Boost {appName}");
+            Debug.WriteLine($"Boost {appName} ({procId})");
             ToggleEfficiencyMode(procHandle, false);
         }
 
         if (pendingProcPid != 0)
         {
-            Console.WriteLine($"Throttle {pendingProcName}");
+            Debug.WriteLine($"Throttle {pendingProcName} ({pendingProcPid})");
 
             var prevProcHandle = Win32API.OpenProcess((uint)Win32API.ProcessAccessFlags.SetInformation, false, pendingProcPid);
             if (prevProcHandle != IntPtr.Zero)
@@ -212,7 +212,7 @@ public class EnergyManager
 
     private static async void AutoThrottleProc()
     {
-        Console.WriteLine("Automatic throttling service started.");
+        Debug.WriteLine("Automatic throttling service started.");
         while (!cts.IsCancellationRequested)
         {
             try
@@ -223,7 +223,7 @@ public class EnergyManager
             }
             catch (OperationCanceledException)
             {
-                Console.WriteLine("Automatic throttling service stopped.");
+                Debug.WriteLine("Automatic throttling service stopped.");
                 break;
             }
         }
@@ -236,9 +236,11 @@ public class EnergyManager
         switch (powerStatus.ACLineStatus)
         {
             case Win32API.SYSTEM_POWER_STATUS.AC_LINE_STATUS_OFFLINE:
+                Debug.WriteLine("AC disconnected");
                 EnergyManager.IsAcConnected = false;
                 break;
             case Win32API.SYSTEM_POWER_STATUS.AC_LINE_STATUS_ONLINE:
+                Debug.WriteLine("AC connected");
                 EnergyManager.IsAcConnected = true;
                 break;
             default:
@@ -268,7 +270,7 @@ public class EnergyManager
             {
                 if (msg.Message == Win32API.CUSTOM_QUIT)
                 {
-                    Console.WriteLine("Quitting...");
+                    Debug.WriteLine("MainService Quitting...");
                     //cts.Cancel();
                     break;
                 }
@@ -285,5 +287,6 @@ public class EnergyManager
         cts.Cancel();
         BoostAllInfluencedProcesses();
         serviceThreadId = IntPtr.Zero;
+        Debug.WriteLine("GUI called to stop");
     }
 }
