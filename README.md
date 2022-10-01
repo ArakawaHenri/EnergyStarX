@@ -1,5 +1,5 @@
 <p align="center">
-  <img src=https://user-images.githubusercontent.com/17510335/188151471-c3793437-a3ff-40bf-9168-efcbd3bd2613.png width=200 height=200 />
+  <img src=https://user-images.githubusercontent.com/17510335/193412949-1803ce85-9d45-445e-86af-d24c07f90594.png width=200 height=200 />
 </p>
 <h1 align="center">EnergyStar X</h1>
 <p align="center">
