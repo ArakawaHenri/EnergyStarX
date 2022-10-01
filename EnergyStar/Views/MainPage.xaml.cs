@@ -44,9 +44,12 @@ public sealed partial class MainPage : Page
 
     private void ToggleButton_Checked(object sender, RoutedEventArgs e)
     {
+        App.Logger.Debug("GUI: StartButton checked");
         if (Environment.OSVersion.Version.Build < 22000)
         {
             ShowMessageBox("Error", "You are running on an unsupported platform.");
+            EnergyStarToggle.IsChecked = false;
+            App.Logger.Warn("Unsupported platform");
             return;
         }
 
@@ -55,15 +58,18 @@ public sealed partial class MainPage : Page
             ((App)Microsoft.UI.Xaml.Application.Current).ESService = new(new ThreadStart(EnergyManager.EnergyManager.MainService));
             ((App)Microsoft.UI.Xaml.Application.Current).ESService.Start();
             EnergyStarStatusText.Text = "EnergyStar X: On";
+            App.Logger.Debug("GUI: Call Core to start EnergyStar service");
         }
         catch (Exception ex)
         {
+            App.Logger.Error(ex, "GUI: Error while starting EnergyStar service");
             ShowMessageBox("Error", ex.Message);
         }
     }
 
     private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
     {
+        App.Logger.Debug("GUI: StartButton unchecked");
         try
         {
             if (((App)Microsoft.UI.Xaml.Application.Current).ESService == null || !((App)Microsoft.UI.Xaml.Application.Current).ESService.IsAlive)
@@ -79,6 +85,7 @@ public sealed partial class MainPage : Page
         }
         catch (Exception ex)
         {
+            App.Logger.Error(ex, "GUI: Error while stopping EnergyStar service");
             ShowMessageBox("Error", ex.Message);
         }
     }
