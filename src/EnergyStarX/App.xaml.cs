@@ -94,6 +94,8 @@ public partial class App : Application
     {
         base.OnLaunched(args);
 
+        MainWindow.SetWindowSize(1070, 575);
+
         await App.GetService<IActivationService>().ActivateAsync(args);
     }
 }

@@ -55,11 +55,23 @@ public sealed partial class ShellPage : Page
     {
         AppTitleBar.Margin = new Thickness()
         {
-            Left = sender.CompactPaneLength * (sender.DisplayMode == NavigationViewDisplayMode.Minimal ? 2 : 1),
+            Left = sender.DisplayMode == NavigationViewDisplayMode.Minimal ? sender.CompactPaneLength : 12,
             Top = AppTitleBar.Margin.Top,
             Right = AppTitleBar.Margin.Right,
             Bottom = AppTitleBar.Margin.Bottom
         };
+        NavigationViewControl.IsPaneToggleButtonVisible = sender.DisplayMode == NavigationViewDisplayMode.Minimal;
+        NavigationViewControl.Margin = new Thickness()
+        {
+            Left = 0,
+            Top = sender.DisplayMode == NavigationViewDisplayMode.Minimal ? 0 : sender.CompactPaneLength,
+            Right = 0,
+            Bottom = 0
+        };
+        if (args.DisplayMode == NavigationViewDisplayMode.Minimal)
+        {
+            NavigationViewControl.IsPaneOpen = true;
+        }
     }
 
     private static KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key, VirtualKeyModifiers? modifiers = null)

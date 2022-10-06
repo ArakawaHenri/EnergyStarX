@@ -8,7 +8,7 @@
     xmlns:behaviors="using:EnergyStarX.Behaviors"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     Loaded="OnLoaded">
-
+  
     <Grid>
         <Grid x:Name="AppTitleBar"
               Canvas.ZIndex="1"
@@ -28,11 +28,13 @@
         <NavigationView
             x:Name="NavigationViewControl"
             Canvas.ZIndex="0"
-            IsBackButtonVisible="Visible"
+            IsBackButtonVisible="Collapsed"
+            IsPaneToggleButtonVisible="False"
             IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
             SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
             IsSettingsVisible="True"
-            ExpandedModeThresholdWidth="1280"
+            ExpandedModeThresholdWidth="1050"
+            OpenPaneLength="200"
             DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
             Header="{x:Bind ((ContentControl)ViewModel.Selected).Content, Mode=OneWay}">
             <NavigationView.MenuItems>
