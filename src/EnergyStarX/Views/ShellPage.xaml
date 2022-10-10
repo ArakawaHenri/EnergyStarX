@@ -7,6 +7,7 @@
     xmlns:helpers="using:EnergyStarX.Helpers"
     xmlns:behaviors="using:EnergyStarX.Behaviors"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:icon="using:H.NotifyIcon"
     Loaded="OnLoaded">
   
     <Grid>
@@ -83,5 +84,32 @@
                 <Frame x:Name="NavigationFrame" />
             </Grid>
         </NavigationView>
+
+        <icon:TaskbarIcon
+            x:Name="TaskbarIcon"
+            x:Uid="TaskbarIcon"
+            DoubleClickCommand="{x:Bind ViewModel.ShowWindowCommand}"
+            Icon="{x:Bind ViewModel.TaskbarIcon, Mode=OneWay}"
+            MenuActivation="RightClick"
+            ToolTipText="{x:Bind ViewModel.TaskbarIconToolTip, Mode=OneWay}"
+            ContextMenuMode="SecondWindow">
+            <icon:TaskbarIcon.ContextFlyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem
+                        x:Uid="TaskbarIconStatusItem"
+                        IsEnabled="False"
+                        Text="EnergyStarX Status: On" />
+                    <MenuFlyoutSeparator></MenuFlyoutSeparator>
+                    <MenuFlyoutItem
+                        x:Uid="TaskbarIconOpenItem"
+                        Command="{x:Bind ViewModel.ShowWindowCommand}"
+                        Text="Open" />
+                    <MenuFlyoutItem
+                        x:Uid="TaskbarIconExitItem"
+                        Command="{x:Bind ViewModel.ExitCommand}"
+                        Text="Exit" />
+                </MenuFlyout>
+            </icon:TaskbarIcon.ContextFlyout>
+        </icon:TaskbarIcon>
     </Grid>
 </Page>
