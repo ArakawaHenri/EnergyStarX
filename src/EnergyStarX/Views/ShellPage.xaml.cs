@@ -1,4 +1,5 @@
-﻿using EnergyStarX.Contracts.Services;
+﻿using CommunityToolkit.Mvvm.Input;
+using EnergyStarX.Contracts.Services;
 using EnergyStarX.Helpers;
 using EnergyStarX.ViewModels;
 
@@ -17,6 +18,20 @@ public sealed partial class ShellPage : Page
     public ShellViewModel ViewModel
     {
         get;
+    }
+
+    [RelayCommand]
+    private void Exit()
+    {
+        TrayIcon.Dispose();
+        Environment.Exit(0);
+    }
+
+    [RelayCommand]
+    private static void ShowWindow()
+    {
+        App.MainWindow.Activate();
+        App.MainWindow.BringToFront();
     }
 
     public ShellPage(ShellViewModel viewModel)

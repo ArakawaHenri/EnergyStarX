@@ -8,7 +8,7 @@
     xmlns:xaml="using:Microsoft.UI.Xaml"
     mc:Ignorable="d">
     <Page.Resources>
-        <helpers:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
+        <helpers:ThemeToBooleanConverter x:Key="ThemeToBooleanConverter" />
     </Page.Resources>
     <Grid>
         <StackPanel
@@ -21,7 +21,7 @@
                     <RadioButton
                         x:Uid="Settings_Theme_Light"
                         Command="{x:Bind ViewModel.SwitchThemeCommand}"
-                        IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=OneWay}"
+                        IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource ThemeToBooleanConverter}, ConverterParameter=Light, Mode=OneWay}"
                         FontSize="15"
                         GroupName="AppTheme">
                         <RadioButton.CommandParameter>
@@ -31,7 +31,7 @@
                     <RadioButton
                         x:Uid="Settings_Theme_Dark"
                         Command="{x:Bind ViewModel.SwitchThemeCommand}"
-                        IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=OneWay}"
+                        IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource ThemeToBooleanConverter}, ConverterParameter=Dark, Mode=OneWay}"
                         FontSize="15"
                         GroupName="AppTheme">
                         <RadioButton.CommandParameter>
@@ -41,7 +41,7 @@
                     <RadioButton
                         x:Uid="Settings_Theme_Default"
                         Command="{x:Bind ViewModel.SwitchThemeCommand}"
-                        IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default, Mode=OneWay}"
+                        IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource ThemeToBooleanConverter}, ConverterParameter=Default, Mode=OneWay}"
                         FontSize="15"
                         GroupName="AppTheme">
                         <RadioButton.CommandParameter>

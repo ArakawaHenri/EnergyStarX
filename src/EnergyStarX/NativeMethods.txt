@@ -1,0 +1,16 @@
+﻿GetWindowThreadProcessId
+GetCurrentThreadId
+OpenProcess
+QueryFullProcessImageName
+SetProcessInformation
+SetPriorityClass
+CloseHandle
+GetSystemPowerStatus
+EnumChildWindows
+SetWinEventHook
+UnhookWinEvent
+PeekMessage
+GetMessage
+PostThreadMessage
+TranslateMessage
+DispatchMessage

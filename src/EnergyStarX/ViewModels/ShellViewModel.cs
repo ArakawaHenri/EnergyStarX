@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using EnergyStarX.Contracts.Services;
 using EnergyStarX.Helpers;
 using EnergyStarX.Views;
@@ -39,19 +38,6 @@ public partial class ShellViewModel : ObservableRecipient
 
     [ObservableProperty]
     private string taskbarIconToolTip = "AppDisplayName".GetLocalized();
-
-    [RelayCommand]
-    private static void ShowWindow()
-    {
-        App.MainWindow.Activate();
-        App.MainWindow.BringToFront();
-    }
-
-    [RelayCommand]
-    private static void Exit()
-    {
-        Environment.Exit(0);
-    }
 
     public ShellViewModel(INavigationService navigationService, INavigationViewService navigationViewService)
     {
