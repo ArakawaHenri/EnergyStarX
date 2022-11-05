@@ -1,10 +1,8 @@
-﻿using System.Runtime.InteropServices;
-
-using Microsoft.UI;
+﻿using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
-
 using Windows.UI;
+using Windows.Win32;
 
 namespace EnergyStarX.Helpers;
 
@@ -13,15 +11,9 @@ namespace EnergyStarX.Helpers;
 // https://github.com/microsoft/TemplateStudio/issues/4516
 internal class TitleBarHelper
 {
-    private const int WAINACTIVE = 0x00;
-    private const int WAACTIVE = 0x01;
-    private const int WMACTIVATE = 0x0006;
-
-    [DllImport("user32.dll")]
-    private static extern IntPtr GetActiveWindow();
-
-    [DllImport("user32.dll", CharSet = CharSet.Auto)]
-    private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, IntPtr lParam);
+    private const uint WAINACTIVE = 0x00u;
+    private const uint WAACTIVE = 0x01u;
+    private const uint WMACTIVATE = 0x06u;
 
     public static void UpdateTitleBar(ElementTheme theme)
     {
@@ -49,16 +41,16 @@ internal class TitleBarHelper
             Application.Current.Resources["WindowCaptionBackground"] = new SolidColorBrush(Colors.Transparent);
             Application.Current.Resources["WindowCaptionBackgroundDisabled"] = new SolidColorBrush(Colors.Transparent);
 
-            var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow);
-            if (hwnd == GetActiveWindow())
+            var hwnd = new Windows.Win32.Foundation.HWND(WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow));
+            if (hwnd == PInvoke.GetActiveWindow())
             {
-                SendMessage(hwnd, WMACTIVATE, WAINACTIVE, IntPtr.Zero);
-                SendMessage(hwnd, WMACTIVATE, WAACTIVE, IntPtr.Zero);
+                PInvoke.SendMessage(hwnd, WMACTIVATE, WAINACTIVE, IntPtr.Zero);
+                PInvoke.SendMessage(hwnd, WMACTIVATE, WAACTIVE, IntPtr.Zero);
             }
             else
             {
-                SendMessage(hwnd, WMACTIVATE, WAACTIVE, IntPtr.Zero);
-                SendMessage(hwnd, WMACTIVATE, WAINACTIVE, IntPtr.Zero);
+                PInvoke.SendMessage(hwnd, WMACTIVATE, WAACTIVE, IntPtr.Zero);
+                PInvoke.SendMessage(hwnd, WMACTIVATE, WAINACTIVE, IntPtr.Zero);
             }
         }
     }

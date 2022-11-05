@@ -1,8 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using EnergyStarX.Contracts.Services;
 using EnergyStarX.Helpers;
+using EnergyStarX.Services;
 using EnergyStarX.Views;
 using Microsoft.UI.Xaml.Navigation;
+using Microsoft.Windows.System.Power;
 
 namespace EnergyStarX.ViewModels;
 
@@ -10,6 +12,8 @@ public partial class ShellViewModel : ObservableRecipient
 {
     private bool _isBackEnabled;
     private object? _selected;
+
+    private readonly EnergyManagerService _energyManagerService;
 
     public INavigationService NavigationService
     {
@@ -39,11 +43,16 @@ public partial class ShellViewModel : ObservableRecipient
     [ObservableProperty]
     private string taskbarIconToolTip = "AppDisplayName".GetLocalized();
 
-    public ShellViewModel(INavigationService navigationService, INavigationViewService navigationViewService)
+    [ObservableProperty]
+    private string taskbarIconStatusText = "EnergyStarX: Off";
+
+    public ShellViewModel(INavigationService navigationService, INavigationViewService navigationViewService, EnergyManagerService energyManagerService)
     {
         NavigationService = navigationService;
         NavigationService.Navigated += OnNavigated;
         NavigationViewService = navigationViewService;
+        _energyManagerService = energyManagerService;
+        EnergyManagerService.StatusChanged += EnergyManagerService_StatusChanged;
         taskbarIcon = new System.Drawing.Icon(Path.Combine(AppContext.BaseDirectory, "Assets/WindowIcon.ico"));
     }
 
@@ -61,6 +70,22 @@ public partial class ShellViewModel : ObservableRecipient
         if (selectedItem != null)
         {
             Selected = selectedItem;
+        }
+    }
+
+    public void EnergyManagerService_StatusChanged(object? sender, EnergyManagerService.ServiceStatus e)
+    {
+        if (e.IsThrottling)
+        {
+            TaskbarIconStatusText = "EnergyStarX: On";
+        }
+        else if (e.PowerSourceKind == PowerSourceKind.AC && e.IsEnabled)
+        {
+            TaskbarIconStatusText = "EnergyStarX: Paused";
+        }
+        else
+        {
+            TaskbarIconStatusText = "EnergyStarX: Off";
         }
     }
 }

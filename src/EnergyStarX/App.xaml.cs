@@ -2,7 +2,6 @@
 using EnergyStarX.Contracts.Services;
 using EnergyStarX.Core.Contracts.Services;
 using EnergyStarX.Core.Services;
-using EnergyStarX.Helpers;
 using EnergyStarX.Models;
 using EnergyStarX.Services;
 using EnergyStarX.ViewModels;
@@ -73,6 +72,7 @@ public partial class App : Application
             // Services
             services.AddSingleton<ILocalSettingsService, LocalSettingsService>();
             services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
+            services.AddSingleton<EnergyManagerService, EnergyManagerService>();
             services.AddTransient<INavigationViewService, NavigationViewService>();
 
             services.AddSingleton<IActivationService, ActivationService>();
@@ -83,11 +83,11 @@ public partial class App : Application
             services.AddSingleton<IFileService, FileService>();
 
             // Views and ViewModels
-            services.AddTransient<SettingsViewModel>();
+            services.AddSingleton<SettingsViewModel>();
             services.AddTransient<SettingsPage>();
-            services.AddTransient<RulesViewModel>();
+            services.AddSingleton<RulesViewModel>();
             services.AddTransient<RulesPage>();
-            services.AddTransient<MainViewModel>();
+            services.AddSingleton<MainViewModel>();
             services.AddTransient<MainPage>();
             services.AddTransient<ShellPage>();
             services.AddTransient<ShellViewModel>();

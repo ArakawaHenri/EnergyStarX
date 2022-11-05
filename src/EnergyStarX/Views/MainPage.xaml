@@ -7,6 +7,40 @@
     mc:Ignorable="d">
 
     <Grid x:Name="ContentArea">
-        
+        <InfoBar
+            x:Name="PlatformNote"
+            x:Uid="PlatformNote"
+            IsOpen="True"
+            IsIconVisible="True"
+            Severity="Warning"
+            IsClosable="False"/>
+
+        <Grid Margin="0,80,0,0">
+            <TextBlock>
+			<Run x:Uid="StatusTitle" FontWeight="Bold" FontSize="20"/>
+            </TextBlock>
+            <TextBlock 
+			    Margin="0,30,0,0"
+			    x:Name="StatusText"
+                Text="{x:Bind ViewModel.StatusText, Mode=OneWay}"
+                FontSize="18"/>
+        </Grid>
+
+        <Grid
+		   VerticalAlignment="Bottom"
+		   HorizontalAlignment="Right"
+		   Margin="0,0,0,35">
+            <ToggleButton 
+				x:Name="MainToggle"
+                IsChecked="{x:Bind ViewModel.IsChecked, Mode=OneWay}"
+                Command="{x:Bind ViewModel.ToggleButtonCheckedCommand}"
+                IsEnabled="False"
+				ToolTipService.ToolTip="Start/Stop EnergyStarX">
+                <StackPanel>
+                    <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE869;"/>
+                    <TextBlock Text="Start"/>
+                </StackPanel>
+            </ToggleButton>
+        </Grid>
     </Grid>
 </Page>

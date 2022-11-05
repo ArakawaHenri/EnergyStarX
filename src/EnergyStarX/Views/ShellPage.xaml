@@ -98,7 +98,7 @@
                     <MenuFlyoutItem
                         x:Uid="TrayIconStatusItem"
                         IsEnabled="False"
-                        Text="EnergyStarX Status: On" />
+                        Text="{x:Bind ViewModel.TaskbarIconStatusText, Mode=OneWay}" />
                     <MenuFlyoutSeparator></MenuFlyoutSeparator>
                     <MenuFlyoutItem
                         x:Uid="TrayIconOpenItem"

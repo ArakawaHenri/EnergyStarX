@@ -5,8 +5,6 @@ using EnergyStarX.Helpers;
 using EnergyStarX.Models;
 
 using Microsoft.Extensions.Options;
-
-using Windows.ApplicationModel;
 using Windows.Storage;
 
 namespace EnergyStarX.Services;

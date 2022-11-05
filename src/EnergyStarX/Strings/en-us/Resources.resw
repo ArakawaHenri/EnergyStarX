@@ -1,5 +1,64 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
@@ -61,9 +120,9 @@
   <data name="AppDisplayName" xml:space="preserve">
     <value>EnergyStarX</value>
   </data>
-	<data name="AppDescription" xml:space="preserve">
-		<value>EnergyStarX</value>
-  	</data>
+  <data name="AppDescription" xml:space="preserve">
+    <value>Throttle background programs automatically.</value>
+  </data>
   <data name="Shell_Main.Content" xml:space="preserve">
     <value>Main</value>
   </data>
@@ -71,7 +130,7 @@
     <value>Rules</value>
   </data>
   <data name="Settings_Personalization.Text" xml:space="preserve">
-    <value>Personalization</value>
+    <value>Appearance</value>
   </data>
   <data name="Settings_Theme.Text" xml:space="preserve">
     <value>Theme</value>
@@ -86,15 +145,60 @@
     <value>Default</value>
   </data>
   <data name="Settings_About.Text" xml:space="preserve">
-    <value>About this application</value>
+    <value>About</value>
   </data>
   <data name="Settings_AboutDescription.Text" xml:space="preserve">
-    <value>TODO: Replace with your app description.</value>
+    <value>EnergyStar X is a tool that automatically throttles background programs to improve battery life.</value>
   </data>
   <data name="SettingsPage_PrivacyTermsLink.Content" xml:space="preserve">
-    <value>Privacy Statement</value>
+    <value>Github Page</value>
   </data>
   <data name="SettingsPage_PrivacyTermsLink.NavigateUri" xml:space="preserve">
-    <value>https://YourPrivacyUrlGoesHere/</value>
+    <value>https://github.com/ArakawaHenri/EnergyStarX</value>
+  </data>
+  <data name="SupportedSystem" xml:space="preserve">
+    <value>Your system is supported, a modern processor can bring best results.</value>
+  </data>
+  <data name="Platform_Note.Message" xml:space="preserve">
+    <value>The EcoQoS API necessary for EnergyStar X requires Windows 11 21H2 (or above) and a modern processor.</value>
+  </data>
+  <data name="Settings_AlwaysThrottle.Content" xml:space="preserve">
+    <value>Throttle background processes even with power supply connected</value>
+  </data>
+  <data name="Settings_CreditTo.Text" xml:space="preserve">
+    <value>
+
+
+
+
+
+
+
+
+
+
+
+This project could not have been born without the support of @imbushuo's original project and @Shisheng233.
+
+
+</value>
+  </data>
+  <data name="Settings_General.Text" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Settings_RunOnStart.Content" xml:space="preserve">
+    <value>Run EnergyStarX on application start</value>
+  </data>
+  <data name="Settings_StartUp.Text" xml:space="preserve">
+    <value>StartUp Settings</value>
+  </data>
+  <data name="Settings_StartWithWindows.Content" xml:space="preserve">
+    <value>Start with Windows</value>
+  </data>
+  <data name="Settings_Strategy.Text" xml:space="preserve">
+    <value>Throttle Plan Settings</value>
+  </data>
+  <data name="StatusTitle.Text" xml:space="preserve">
+    <value>Status</value>
   </data>
 </root>

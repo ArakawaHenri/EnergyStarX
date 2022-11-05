@@ -1,4 +1,6 @@
-﻿GetWindowThreadProcessId
+﻿PROCESS_POWER_THROTTLING_STATE
+GetActiveWindow
+GetWindowThreadProcessId
 GetCurrentThreadId
 OpenProcess
 QueryFullProcessImageName
@@ -11,6 +13,7 @@ SetWinEventHook
 UnhookWinEvent
 PeekMessage
 GetMessage
+SendMessage
 PostThreadMessage
 TranslateMessage
 DispatchMessage
