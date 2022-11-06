@@ -52,15 +52,15 @@ internal class EnergyManager
     private static uint pendingProcPid = 0;
     private static string pendingProcName = "";
 
+    private static readonly int szControlBlock;
     private static readonly IntPtr pThrottleOn;
     private static readonly IntPtr pThrottleOff;
-    private static readonly int szControlBlock;
 
     static EnergyManager()
     {
+        szControlBlock = Marshal.SizeOf<PROCESS_POWER_THROTTLING_STATE>();
         pThrottleOn = Marshal.AllocHGlobal(szControlBlock);
         pThrottleOff = Marshal.AllocHGlobal(szControlBlock);
-        szControlBlock = Marshal.SizeOf<PROCESS_POWER_THROTTLING_STATE>();
 
         var throttleState = new PROCESS_POWER_THROTTLING_STATE
         {
